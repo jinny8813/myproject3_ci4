@@ -12,4 +12,13 @@ class Card extends BaseController
             return view('pages/login');
         }
     }
+
+    public function myDesk()
+    {
+        if($this->isLogin()){
+            return view('pages/mydesk',$this->memberData);
+        }else{
+            return view('pages/login');
+        }
+    }
 }
