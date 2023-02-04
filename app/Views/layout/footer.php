@@ -5,9 +5,9 @@
   </section>
 
     <footer>
-      <div class="p-2 text-center">
+      <div class="p-3 text-center">
         <?php
-            echo "<p>Copyright &copy; 2023-" . date("Y") . " GoVoc by JinnyLan</p>";
+            echo "Copyright &copy; 2023-" . date("Y") . " GoVoc by JinnyLan";
         ?>
       </div>
     </footer>

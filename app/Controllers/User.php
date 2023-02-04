@@ -6,6 +6,11 @@ class User extends BaseController
 {
     public function index()
     {
-        return view('layout/template');
+        if($this->isLogin()){
+            return view('pages/home',$this->memberData);
+        }else{
+            return view('pages/home');
+            //return view('pages/login');
+        }
     }
 }
