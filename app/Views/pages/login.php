@@ -8,35 +8,21 @@
 
                     <form method="POST" action="<?= base_url("User/doLogin")?>">
                     <div class="form-group row mb-3">
-                <div class="col-4">
-                  <label for="email" class="form-label"
-                    >電子郵件:
-                  </label>
-                </div>
-                <div class="col-8">
-                  <input
-                    type="email"
-                    class="col-4 form-control"
-                    id="email"
-                    name="email" placeholder="請輸入電子郵件"
-                  />
-                </div>
-              </div>
-              <div class="form-group row mb-3">
-                <div class="col-4">
-                  <label for="password" class="form-label"
-                    >密碼:
-                  </label>
-                </div>
-                <div class="col-8">
-                  <input
-                    type="password"
-                    class="col-4 form-control"
-                    id="password"
-                    name="password" placeholder="請輸入密碼"
-                  />
-                </div>
-              </div>
+                            <div class="col-4">
+                                <label for="email">電子信箱:</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="email" name="email" class="form-control" placeholder="Enter your email">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-3">
+                            <div class="col-4">
+                                <label for="password">密碼:</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="password" name="password" class="form-control" placeholder="Enter your password">
+                            </div>
+                        </div>
               <div class="row mb-3 justify-content-center">
               <button type="submit" name="submit" class="btn btn-primary col-2">送出</button>
               </div>
