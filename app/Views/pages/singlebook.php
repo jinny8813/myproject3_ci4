@@ -18,15 +18,18 @@
 
           <?php foreach($cards as $row):?>
             <div class="card my-3">
-                  <div class="card-body">
-                    <h5 class="card-title d-inline-block"><?= $row['card_title']?></h5>
-                    <br>
-                    <p class="card-title d-inline-block"><?= $row['card_content']?></p>
-                    <br>
+              <div class="row g-0">
+                <div class="col-3" style="background-color: red;">
+                <p class="text-center my-3" style="color:white"><?= $row['card_state']?></p>
+                </div>
+                <div class="card-body col-9">
                     <div class="card-text d-inline-block float-end">
-                      <a href="<?= base_url('Card/editCard/'.$row['card_id'])?>" class="btn btn-primary">編輯</a>
+                      <a href="<?= base_url('Card/editCard/'.$row['card_id'])?>" class="btn btn-primary"><i class="fa-sharp fa-solid fa-pen"></i></a>
                     </div>
-                  </div>
+                    <h5 class="card-title"><?= $row['card_title']?></h5>
+                    <p><?= $row['card_content']?></p>
+                </div>
+              </div>
             </div>
             <?php endforeach;?>
 

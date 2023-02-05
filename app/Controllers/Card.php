@@ -18,7 +18,7 @@ class Card extends BaseController
     {
         if($this->isLogin()){
             $cardModel = new CardModel();
-            $data['cards'] = $cardModel->orderBy('card_id', 'DESC')->findAll($book_id);
+            $data['cards'] = $cardModel->where('book_id', $book_id)->orderBy('card_id', 'DESC')->findAll();
             $addbook_id['book_id']=['book_id'=>$book_id];
             $arr=array_merge($this->memberData,$addbook_id);
             return view("pages/singlebook",array_merge($arr,$data)); 
@@ -49,6 +49,7 @@ class Card extends BaseController
                 'book_id'=>$book_id,
                 'card_title'=>$title,
                 'card_content'=>$content,
+                'card_state'=>"未測驗"
             ];
             $cardModel->insert($values);
             $arr=['success_messages'=>"發文成功!!將跳轉回所有文章頁面",
