@@ -14,48 +14,52 @@ class Card extends BaseController
     //     }
     // }
 
-    // public function myDesk()
-    // {
-    //     if($this->isLogin()){
-    //         $cardModel = new CardModel();
-    //         $data['books'] = $cardModel->orderBy('book_id', 'DESC')->findAll();
-    //         return view('pages/mydesk',array_merge($this->memberData,$data));
-    //     }else{
-    //         return view('pages/login');
-    //     }
-    // }
+    public function singlebook($book_id)
+    {
+        if($this->isLogin()){
+            $cardModel = new CardModel();
+            $data['cards'] = $cardModel->orderBy('card_id', 'DESC')->findAll($book_id);
+            $addbook_id['book_id']=['book_id'=>$book_id];
+            $arr=array_merge($this->memberData,$addbook_id);
+            return view("pages/singlebook",array_merge($arr,$data)); 
+        }else{
+            return view('pages/login');
+        }
+    }
 
-    // public function createBook()
-    // {
-    //     if($this->isLogin()){
-    //         return view('pages/createBook',$this->memberData);
-    //     }else{
-    //         return view('pages/login');
-    //     }
-    // }
+    public function createCard($book_id)
+    {
+        if($this->isLogin()){
+            $addbook_id['book_id']=['book_id'=>$book_id];
+            $arr=array_merge($this->memberData,$addbook_id);
+            return view('pages/createcard',$arr);
+        }else{
+            return view('pages/login');
+        }
+    }
 
-    // public function doCreateBook()
-    // {
-    //     if($this->isLogin()){
-    //         $user_id = $this->request->getPost("user_id");
-    //         $title = $this->request->getPost("title");
-    //         $description = $this->request->getPost("description");
-    //         $cardModel = new CardModel();
-    //         $values = [
-    //             'user_id'=>$user_id,
-    //             'book_title'=>$title,
-    //             'book_description'=>$description,
-    //         ];
-    //         $cardModel->insert($values);
-    //         $arr=['success_messages'=>"發文成功!!將跳轉回所有文章頁面",
-    //                 'status_code'=>200];
-    //         //echo json_encode($arr);
-    //         return $this->response->setJSON($arr);
-    //         // return view('pages/bloghome');
-    //     }else{
-    //         return view('pages/login');
-    //     }                
-    // }
+    public function doCreateCard()
+    {
+        if($this->isLogin()){
+            $book_id = $this->request->getPost("book_id");
+            $title = $this->request->getPost("title");
+            $content = $this->request->getPost("content");
+            $cardModel = new CardModel();
+            $values = [
+                'book_id'=>$book_id,
+                'card_title'=>$title,
+                'card_content'=>$content,
+            ];
+            $cardModel->insert($values);
+            $arr=['success_messages'=>"發文成功!!將跳轉回所有文章頁面",
+                    'status_code'=>200];
+            //echo json_encode($arr);
+            return $this->response->setJSON($arr);
+            // return view('pages/bloghome');
+        }else{
+            return view('pages/login');
+        }                
+    }
 
     // public function singlebook($user_id)
     // {

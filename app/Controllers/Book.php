@@ -57,17 +57,6 @@ class Book extends BaseController
         }                
     }
 
-    public function singlebook($user_id)
-    {
-        if($this->isLogin()){
-            $bookModel = new BookModel();
-            $data['books'] = $bookModel->findAll($user_id);
-            return view("pages/singlebook",array_merge($this->memberData,$data)); 
-        }else{
-            return view('pages/login');
-        }
-    }
-
     // public function personal()
     // {
     //     if($this->isLogin()){

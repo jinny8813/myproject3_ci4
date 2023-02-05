@@ -7,7 +7,6 @@ class CardModel extends Model
     protected $table = 'cards';
     protected $primarykey = 'card_id';
 
-    protected $allowedFields = ['book_id','user_id','book_title','book_description','create_at'];
-
+    protected $allowedFields = ['card_id','book_id','card_title','card_content','card_state','create_at'];
 
 }
