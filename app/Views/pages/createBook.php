@@ -36,18 +36,6 @@
                 </div>
             </form>
 
-                    <?php 
-                    if(isset($error_messages)){
-                        echo '<div class="alert alert-danger">' . esc($error_messages) . '</div>';
-                    }        
-                    ?>
-                    <script>
-                        let str="<?= isset($success_messages)? esc($success_messages):''?>";
-                        if(str!=''){
-                            alert(str);
-                        }
-                    </script>
-
 <script>
     function doCreateBook(){
     event.preventDefault();
@@ -57,7 +45,7 @@
     let description = document.getElementById("description").value;
 
     $.ajax({
-        url: "<?= base_url("Card/doCreateBook")?>",
+        url: "<?= base_url("Book/doCreateBook")?>",
         type: 'POST',
         dataType: 'json',
         data: {
@@ -68,7 +56,7 @@
     })
     .done(function(e){
         //window.location.reload();
-        window.location.href = `<?= base_url('Card/myDesk')?>`;
+        window.location.href = `<?= base_url('Book/myDesk')?>`;
     })
     .fail(function(e){
         try{
@@ -84,8 +72,8 @@
 </script>
         
                     <div class="text-center row justify-content-center py-5">
-                        <p class="text-center col-12">回到我的書櫃</p>
-                        <a href="<?php echo base_url('Card/myDesk') ?>" class="btn btn-primary col-2">返回</a>
+                        <p class="text-center col-12">回到書櫃</p>
+                        <a href="<?php echo base_url('Book/myDesk') ?>" class="btn btn-primary col-2">返回</a>
                     </div>
         </div>
       </div>

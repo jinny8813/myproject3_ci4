@@ -1,72 +1,72 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\CardModel;
+use App\Models\BookModel;
 
-class Card extends BaseController
+class Book extends BaseController
 {
-    // public function index()
-    // {
-    //     if($this->isLogin()){
-    //         return view('pages/home',$this->memberData);
-    //     }else{
-    //         return view('pages/login');
-    //     }
-    // }
+    public function index()
+    {
+        if($this->isLogin()){
+            return view('pages/home',$this->memberData);
+        }else{
+            return view('pages/login');
+        }
+    }
 
-    // public function myDesk()
-    // {
-    //     if($this->isLogin()){
-    //         $cardModel = new CardModel();
-    //         $data['books'] = $cardModel->orderBy('book_id', 'DESC')->findAll();
-    //         return view('pages/mydesk',array_merge($this->memberData,$data));
-    //     }else{
-    //         return view('pages/login');
-    //     }
-    // }
+    public function myDesk()
+    {
+        if($this->isLogin()){
+            $bookModel = new BookModel();
+            $data['books'] = $bookModel->orderBy('book_id', 'DESC')->findAll();
+            return view('pages/mydesk',array_merge($this->memberData,$data));
+        }else{
+            return view('pages/login');
+        }
+    }
 
-    // public function createBook()
-    // {
-    //     if($this->isLogin()){
-    //         return view('pages/createBook',$this->memberData);
-    //     }else{
-    //         return view('pages/login');
-    //     }
-    // }
+    public function createBook()
+    {
+        if($this->isLogin()){
+            return view('pages/createBook',$this->memberData);
+        }else{
+            return view('pages/login');
+        }
+    }
 
-    // public function doCreateBook()
-    // {
-    //     if($this->isLogin()){
-    //         $user_id = $this->request->getPost("user_id");
-    //         $title = $this->request->getPost("title");
-    //         $description = $this->request->getPost("description");
-    //         $cardModel = new CardModel();
-    //         $values = [
-    //             'user_id'=>$user_id,
-    //             'book_title'=>$title,
-    //             'book_description'=>$description,
-    //         ];
-    //         $cardModel->insert($values);
-    //         $arr=['success_messages'=>"發文成功!!將跳轉回所有文章頁面",
-    //                 'status_code'=>200];
-    //         //echo json_encode($arr);
-    //         return $this->response->setJSON($arr);
-    //         // return view('pages/bloghome');
-    //     }else{
-    //         return view('pages/login');
-    //     }                
-    // }
+    public function doCreateBook()
+    {
+        if($this->isLogin()){
+            $user_id = $this->request->getPost("user_id");
+            $title = $this->request->getPost("title");
+            $description = $this->request->getPost("description");
+            $bookModel = new BookModel();
+            $values = [
+                'user_id'=>$user_id,
+                'book_title'=>$title,
+                'book_description'=>$description,
+            ];
+            $bookModel->insert($values);
+            $arr=['success_messages'=>"發文成功!!將跳轉回所有文章頁面",
+                    'status_code'=>200];
+            //echo json_encode($arr);
+            return $this->response->setJSON($arr);
+            // return view('pages/bloghome');
+        }else{
+            return view('pages/login');
+        }                
+    }
 
-    // public function singlebook($user_id)
-    // {
-    //     if($this->isLogin()){
-    //         $cardModel = new CardModel();
-    //         $data['books'] = $cardModel->findAll($user_id);
-    //         return view("pages/singlebook",array_merge($this->memberData,$data)); 
-    //     }else{
-    //         return view('pages/login');
-    //     }
-    // }
+    public function singlebook($user_id)
+    {
+        if($this->isLogin()){
+            $bookModel = new BookModel();
+            $data['books'] = $bookModel->findAll($user_id);
+            return view("pages/singlebook",array_merge($this->memberData,$data)); 
+        }else{
+            return view('pages/login');
+        }
+    }
 
     // public function personal()
     // {

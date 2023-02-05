@@ -37,7 +37,7 @@ class User extends BaseController
         if($this->isLogin()){
             $err=['error_messages'=>"已登入",
             'status_code'=>403];
-            return redirect()->to(base_url('Card'));
+            return view('pages/home',$this->memberData);
         }
 
         $email = $this->request->getPost("email");
@@ -54,7 +54,7 @@ class User extends BaseController
         if($memberData){
             $this->session->set("memberData",$memberData);
             $this->response->setStatusCode(200);
-            return redirect()->to(base_url('Card'));
+            return redirect()->to(base_url('Book'));
             return $this->response->setJSON([
                 "msg" => "OK"
             ]);
