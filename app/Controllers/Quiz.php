@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Models\BookModel;
 use App\Models\CardModel;
 use App\Models\QuizModel;
+use App\Models\EventlogModel;
 
 class Quiz extends BaseController
 {
@@ -72,6 +73,29 @@ class Quiz extends BaseController
         }else{
             return view('pages/login');
         }                
+    }
+
+    public function storeQuiz()
+    {
+        if($this->isLogin()){
+            $quiz_id = $this->request->getPost("quiz_id");
+            $selections = $this->request->getPost("selections");
+            $bigArr = $this->request->getPost("bigArr");
+            $eventlogModel = new EventlogModel();
+            for($i=0;$i<count($selections);$i++){
+                $values = [
+                    'quiz_id'=>$quiz_id,
+                    'card_id'=>$bigArr[$i]['card_id'],
+                    'choose'=>$selections[$i]
+                ];
+                $eventlogModel->insert($values);
+            }
+            $arr=['success_messages'=>"發文成功!!將跳轉回所有文章頁面",
+                'status_code'=>200];
+            return $this->response->setJSON($arr);
+        }else{
+            return view('pages/login');
+        }
     }
 
     // public function personal()
