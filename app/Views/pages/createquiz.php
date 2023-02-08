@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-8">
                         <select name="select_book"id="select_book" class="form-select">
-                            <option value="no">不限</option>
+                            <option value="all">不限</option>
                             <?php foreach($books as $row):?>
                                 <option value="<?= $row['book_id']?>"><?= $row['book_title']?></option>
                             <?php endforeach;?>
@@ -24,7 +24,7 @@
                         <label for="select_old">未複習逾</label>
                     </div>
                     <div class="col-8">
-                        <select name="select_old"id="select_old" class="form-select">
+                        <select name="select_old"id="select_old" class="form-select" disabled>
                             <option value="no">不限</option>
                             <option value="3">3天</option>
                             <option value="7">7天</option>
@@ -39,7 +39,7 @@
                         <label for="select_wrong">近一月逾</label>
                     </div>
                     <div class="col-8">
-                        <select name="select_wrong"id="select_wrong" class="form-select">
+                        <select name="select_wrong"id="select_wrong" class="form-select" disabled>
                             <option value="no">不限</option>
                             <option value="5">5錯誤</option>
                             <option value="10">10錯誤</option>
@@ -54,7 +54,7 @@
                         <label for="select_state">字卡狀態</label>
                     </div>
                     <div class="col-8">
-                        <select name="select_state"id="select_state" class="form-select">
+                        <select name="select_state"id="select_state" class="form-select" disabled>
                             <option value="no">不限</option>
                             <option value="未測驗">未測驗</option>
                             <option value="差">差</option>
@@ -71,7 +71,7 @@
                         <label for="select_amount">測驗數量</label>
                     </div>
                     <div class="col-8">
-                        <select name="select_amount"id="select_amount" class="form-select">
+                        <select name="select_amount"id="select_amount" class="form-select" disabled>
                             <option value="10">10</option>
                             <option value="20">20</option>
                             <option value="50">50</option>

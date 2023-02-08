@@ -38,7 +38,7 @@ class Quiz extends BaseController
             $select_state = $this->request->getPost("select_state");
             $select_amount = $this->request->getPost("select_amount");
             $cardModel = new CardModel();
-            $data = $cardModel->select('card_id')->where('book_id', $select_book)->orderBy('title', 'RANDOM')->findAll(4);
+            $data = $cardModel->select('card_id')->where('book_id', $select_book)->orderBy('title', 'RANDOM')->findAll(5);
             $quiz_list="";
             foreach ($data as $i):
                 $quiz_list=$quiz_list.$i['card_id']."_";
@@ -65,7 +65,7 @@ class Quiz extends BaseController
             $quizData = $quizModel->orderBy('create_at', 'DESC')->findAll(1);
             $quizArr=explode("_", $quizData[0]['quiz_list']);
             $cardModel = new CardModel();
-            $data['cards'] = $cardModel->whereIn('card_id',$quizArr)->findAll();
+            $data['cards'] = $cardModel->whereIn('card_id',$quizArr)->orderBy('title', 'RANDOM')->findAll();
             $quiz_id['quiz_id'] = ['quiz_id'=>$quizData[0]['quiz_id']];
             $tmp=array_merge($quiz_id,$data);
             $tmp=array_merge($this->memberData,$tmp);
@@ -89,6 +89,44 @@ class Quiz extends BaseController
                     'choose'=>$selections[$i]
                 ];
                 $eventlogModel->insert($values);
+            }
+            for($i=0;$i<count($selections);$i++){
+                $cardModel = new CardModel();
+                $state = $cardModel->where('card_id', $bigArr[$i]['card_id'])->findAll();
+                $update_state=-1;
+                if($state[0]['card_state']==0){
+                    $update_state=5;
+                    switch($selections[$i]){
+                        case "忘記":
+                            $update_state=$update_state-4;
+                            break;
+                        case "模糊":
+                            $update_state=$update_state-2;
+                            break;
+                        case "熟悉":
+                            $update_state=$update_state+3;
+                            break;
+                    }
+                }else{
+                    $update_state=$state[0]['card_state'];
+                    switch($selections[$i]){
+                        case "忘記":
+                            $update_state=$update_state-2;
+                            break;
+                        case "模糊":
+                            $update_state=$update_state-1;
+                            break;
+                        case "熟悉":
+                            $update_state=$update_state+1;
+                            break;
+                    }
+                    if($update_state>10){
+                        $update_state==10;
+                    }else if($update_state<1){
+                        $update_state==1;
+                    }
+                }
+                $cardModel->where('card_id', $state[0]['card_id'])->set('card_state', $update_state)->update();
             }
             $arr=['success_messages'=>"發文成功!!將跳轉回所有文章頁面",
                 'status_code'=>200];

@@ -49,7 +49,7 @@ class Card extends BaseController
                 'book_id'=>$book_id,
                 'card_title'=>$title,
                 'card_content'=>$content,
-                'card_state'=>"未測驗"
+                'card_state'=>0
             ];
             $cardModel->insert($values);
             $arr=['success_messages'=>"發文成功!!將跳轉回所有文章頁面",

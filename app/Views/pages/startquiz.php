@@ -47,7 +47,7 @@ flipCard.addEventListener('click', () => {
 
 theChoice1.addEventListener('click', () => {
   selections.push(document.getElementById("theChoice1").textContent);
-    if(currentIndex>=4){
+    if(currentIndex>=5){
     console.log(selections);
     storeQuiz();
     }else{
@@ -56,7 +56,7 @@ theChoice1.addEventListener('click', () => {
   })
 theChoice2.addEventListener('click', () => {
   selections.push(document.getElementById("theChoice2").textContent);
-    if(currentIndex>=4){
+    if(currentIndex>=5){
     console.log(selections);
     storeQuiz();
     }else{
@@ -65,7 +65,7 @@ theChoice2.addEventListener('click', () => {
   })
 theChoice3.addEventListener('click', () => {
   selections.push(document.getElementById("theChoice3").textContent);
-    if(currentIndex>=4){
+    if(currentIndex>=5){
     console.log(selections);
     storeQuiz();
     }else{

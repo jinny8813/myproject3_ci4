@@ -19,8 +19,9 @@
           <?php foreach($cards as $row):?>
             <div class="card my-3">
               <div class="row g-0">
-                <div class="col-3" style="background-color: red;">
-                <p class="text-center my-3" style="color:white"><?= $row['card_state']?></p>
+                <div class="col-3 cardBgColor">
+                  <p class="text-center my-3 d-none stateDNone"><?= $row['card_state']?></p>
+                  <p class="text-center my-3 cardState"></p>
                 </div>
                 <div class="card-body col-9">
                     <div class="card-text d-inline-block float-end">
@@ -36,5 +37,61 @@
         </div>
       </div>
     </div>
+<script>
+  let cardBgColor = document.querySelectorAll(".cardBgColor");
+let cardState = document.querySelectorAll(".cardState");
+let stateDNone = document.querySelectorAll(".stateDNone");
+console.log(stateDNone.length);
+for (let i = 0; i < stateDNone.length; i++) {
+  let num = parseInt(stateDNone[i].textContent);
+  switch (num) {
+    case 0:
+      cardBgColor[i].style.backgroundColor = "#f8b2bc";
+      cardState[i].innerText = "未測驗";
+      break;
+    case 1:
+      cardBgColor[i].style.backgroundColor = "#f59598";
+      cardState[i].innerText = "差";
+      break;
+    case 2:
+      cardBgColor[i].style.backgroundColor = "#f59598";
+      cardState[i].innerText = "差";
+      break;
+    case 3:
+      cardBgColor[i].style.backgroundColor = "#febd7d";
+      cardState[i].innerText = "弱";
+      break;
+    case 4:
+      cardBgColor[i].style.backgroundColor = "#febd7d";
+      cardState[i].innerText = "弱";
+      break;
+    case 5:
+      cardBgColor[i].style.backgroundColor = "#f9f08d";
+      cardState[i].innerText = "中";
+      break;
+    case 6:
+      cardBgColor[i].style.backgroundColor = "#f9f08d";
+      cardState[i].innerText = "中";
+      break;
+    case 7:
+      cardBgColor[i].style.backgroundColor = "#90cfb5";
+      cardState[i].innerText = "可";
+      break;
+    case 8:
+      cardBgColor[i].style.backgroundColor = "#90cfb5";
+      cardState[i].innerText = "可";
+      break;
+    case 9:
+      cardBgColor[i].style.backgroundColor = "#8abade";
+      cardState[i].innerText = "佳";
+      break;
+    case 10:
+      cardBgColor[i].style.backgroundColor = "#8abade";
+      cardState[i].innerText = "佳";
+      break;
+  }
+}
+
+</script>
 </section>
 <?= $this->endSection()?>
