@@ -46,7 +46,7 @@ for (let i = 0; i < stateDNone.length; i++) {
   let num = parseInt(stateDNone[i].textContent);
   switch (num) {
     case 0:
-      cardBgColor[i].style.backgroundColor = "#f8b2bc";
+      cardBgColor[i].style.backgroundColor = "#ccac90";
       cardState[i].innerText = "未測驗";
       break;
     case 1:
