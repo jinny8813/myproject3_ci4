@@ -11,25 +11,31 @@ class Statistics extends BaseController
     public function index()
     {
         if($this->isLogin()){
-            return view('pages/statistics',$this->memberData);
-        }else{
-            return view('pages/login');
-        }
-    }
-
-    public function showToday()
-    {
-        if($this->isLogin()){
             $user_id = $this->memberData['user_id'];
             $bookModel=new BookModel();
-            $data['books'] = $bookModel->where('user_id', $user_id)->findAll();
+            $data1 = $bookModel->where('user_id', $user_id)->findAll();
+            $data_book_id=[];
+            foreach($data1 as $i){
+                $data_book_id[] = $i['book_id'];
+            }
             $cardModel = new CardModel();
-            $data['cards'] = $cardModel->whereIn('book_id', $data['books'])->findAll();
+            $data2['my_cards'] = $cardModel->whereIn('book_id', $data_book_id)->findAll();
+            $data_card_id=[];
+            foreach($data2['my_cards'] as $i){
+                $data_card_id[] = $i['card_id'];
+            }
+            $eventlogModel = new EventlogModel();
+            $where="DATE(create_at) = CURDATE()";
+            $data3['today_logs'] = $eventlogModel->where($where)->whereIn('card_id', $data_card_id)->findAll();
 
-            $tmp=array_merge($data['books'],$data['cards']);
+
+
+            $tmp=array_merge($data2,$data3);
             $tmp=array_merge($this->memberData,$tmp);
+            return view('pages/statistics',$tmp);
         }else{
             return view('pages/login');
         }
     }
+
 }
