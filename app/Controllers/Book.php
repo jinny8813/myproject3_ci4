@@ -10,7 +10,7 @@ class Book extends BaseController
         if($this->isLogin()){
             return view('pages/home',$this->memberData);
         }else{
-            return view('pages/login');
+            return redirect()->to("User/login");
         }
     }
 
@@ -21,7 +21,7 @@ class Book extends BaseController
             $data['books'] = $bookModel->orderBy('book_id', 'DESC')->findAll();
             return view('pages/mydesk',array_merge($this->memberData,$data));
         }else{
-            return view('pages/login');
+            return redirect()->to("User/login");
         }
     }
 
@@ -30,7 +30,7 @@ class Book extends BaseController
         if($this->isLogin()){
             return view('pages/createBook',$this->memberData);
         }else{
-            return view('pages/login');
+            return redirect()->to("User/login");
         }
     }
 
@@ -53,7 +53,7 @@ class Book extends BaseController
             return $this->response->setJSON($arr);
             // return view('pages/bloghome');
         }else{
-            return view('pages/login');
+            return redirect()->to("User/login");
         }                
     }
 

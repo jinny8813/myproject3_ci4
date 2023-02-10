@@ -5,14 +5,14 @@ use App\Models\CardModel;
 
 class Card extends BaseController
 {
-    // public function index()
-    // {
-    //     if($this->isLogin()){
-    //         return view('pages/home',$this->memberData);
-    //     }else{
-    //         return view('pages/login');
-    //     }
-    // }
+    public function index()
+    {
+        if($this->isLogin()){
+            
+        }else{
+            return redirect()->to("User/login");
+        }
+    }
 
     public function singlebook($book_id)
     {
@@ -23,7 +23,7 @@ class Card extends BaseController
             $arr=array_merge($this->memberData,$addbook_id);
             return view("pages/singlebook",array_merge($arr,$data)); 
         }else{
-            return view('pages/login');
+            return redirect()->to("User/login");
         }
     }
 
@@ -34,7 +34,7 @@ class Card extends BaseController
             $arr=array_merge($this->memberData,$addbook_id);
             return view('pages/createcard',$arr);
         }else{
-            return view('pages/login');
+            return redirect()->to("User/login");
         }
     }
 
@@ -58,7 +58,7 @@ class Card extends BaseController
             return $this->response->setJSON($arr);
             // return view('pages/bloghome');
         }else{
-            return view('pages/login');
+            return redirect()->to("User/login");
         }                
     }
 

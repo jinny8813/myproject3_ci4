@@ -10,14 +10,14 @@ class User extends BaseController
         if($this->isLogin()){
             return view('pages/home',$this->memberData);
         }else{
-            return view('pages/login');
+            return redirect()->to("User/login");
         }
     }
 
     public function login()
     {
         if($this->isLogin()){
-            return view('pages/home',$this->memberData);
+            return redirect()->to("User");
         }else{
             return view('pages/login');
         }
@@ -26,7 +26,7 @@ class User extends BaseController
     public function register()
     {
         if($this->isLogin()){
-            return view('pages/home',$this->memberData);
+            return redirect()->to("User");
         }else{
             return view('pages/register');
         }

@@ -13,7 +13,7 @@ class Quiz extends BaseController
         if($this->isLogin()){
             return view('pages/quizhome',$this->memberData);
         }else{
-            return view('pages/login');
+            return redirect()->to("User/login");
         }
     }
 
@@ -24,7 +24,7 @@ class Quiz extends BaseController
             $data['books'] = $bookModel->where('user_id', $this->memberData['user_id'])->findAll();
             return view('pages/createquiz',array_merge($this->memberData,$data));
         }else{
-            return view('pages/login');
+            return redirect()->to("User/login");
         }
     }
 
@@ -54,7 +54,7 @@ class Quiz extends BaseController
                 'status_code'=>200];
             return $this->response->setJSON($arr);
         }else{
-            return view('pages/login');
+            return redirect()->to("User/login");
         }                
     }
 
@@ -71,7 +71,7 @@ class Quiz extends BaseController
             $tmp=array_merge($this->memberData,$tmp);
             return view('pages/startquiz',$tmp);
         }else{
-            return view('pages/login');
+            return redirect()->to("User/login");
         }                
     }
 
@@ -132,7 +132,7 @@ class Quiz extends BaseController
                 'status_code'=>200];
             return $this->response->setJSON($arr);
         }else{
-            return view('pages/login');
+            return redirect()->to("User/login");
         }
     }
 

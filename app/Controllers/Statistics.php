@@ -34,7 +34,7 @@ class Statistics extends BaseController
             $tmp=array_merge($this->memberData,$tmp);
             return view('pages/statistics',$tmp);
         }else{
-            return view('pages/login');
+            return redirect()->to("User/login");
         }
     }
 
