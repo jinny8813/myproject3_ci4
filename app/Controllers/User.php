@@ -54,7 +54,7 @@ class User extends BaseController
         if($memberData){
             $this->session->set("memberData",$memberData);
             $this->response->setStatusCode(200);
-            return redirect()->to(base_url('Book'));
+            return redirect()->to("User");
             return $this->response->setJSON([
                 "msg" => "OK"
             ]);

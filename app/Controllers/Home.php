@@ -6,6 +6,6 @@ class Home extends BaseController
 {
     public function index()
     {
-        return redirect()->to("User/login");
+        return redirect()->to("User");
     }
 }

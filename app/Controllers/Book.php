@@ -8,8 +8,9 @@ class Book extends BaseController
     public function index()
     {
         if($this->isLogin()){
+            $user_id=$this->memberData['user_id'];
             $bookModel = new BookModel();
-            $data['books'] = $bookModel->orderBy('book_id', 'DESC')->findAll();
+            $data['books']=$bookModel->getDeskInfo($user_id);
             return view('pages/mydesk',array_merge($this->memberData,$data));
         }else{
             return redirect()->to("User/login");
