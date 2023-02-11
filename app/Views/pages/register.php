@@ -3,7 +3,7 @@
     <section class="bg_two">
         <div class="container p-5">
             <div class="row justify-content-center">
-                <div class="col-6">
+                <div class="">
                     <h2 class="text-center mb-3">註冊</h2>
 
                     <form action="<?= base_url("User/doRegister")?>" method="post">

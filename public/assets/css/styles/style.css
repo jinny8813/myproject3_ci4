@@ -4,7 +4,7 @@
 
 header,
 footer {
-  background-color: #b76f60;
+  background-color: #224201;
   color: white;
 }
 header .navbar,
@@ -19,12 +19,12 @@ footer ul li .nav-link {
 }
 header ul li .nav-link:hover,
 footer ul li .nav-link:hover {
-  background-color: #de9f63;
+  background-color: #6a8824;
   color: white;
 }
 header a:hover,
 footer a:hover {
-  color: #de9f63;
+  color: #6a8824;
 }
 
 section a,
@@ -33,32 +33,23 @@ section .nav-link {
 }
 section a:hover,
 section .nav-link:hover {
-  background-color: #de9f63;
+  background-color: #d6b005;
   color: white;
 }
 
-.bg_one {
-  background-color: #ddac9e;
-}
-
 .bg_two {
-  background-color: #dfd8cc;
+  background-color: #f8f8f5;
 }
 
 .btn {
-  background-color: #de9f63;
+  background-color: #d6b005;
   border: none;
 }
 
-.btn:hover {
-  background-color: #a47545;
+.btn:hover,
+.btn::after,
+.btn:focus,
+.btn:active:hover {
+  background-color: #a88a02;
   border: none;
-}
-
-.img_banner {
-  aspect-ratio: 10/3;
-  overflow: hidden;
-}
-.img_banner img {
-  max-width: 100%;
 }/*# sourceMappingURL=style.css.map */

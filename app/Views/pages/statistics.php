@@ -91,9 +91,9 @@
         {
             data: [cFamiliar,cVague,cForget],
             backgroundColor: [
-                  "#3cba9f",
-                  "#ffa500",
-                  "#c45850",
+                  "#5c5246",
+                  "#a99a85",
+                  "#e3ddd1",
                 ],
             borderWidth:0
         }

@@ -1,10 +1,16 @@
+$color-dark: #224201;
+$color-light: #f8f8f5;
+$color-link: #d6b005;
+$color-dark-hover: #6a8824;
+$color-link-hover: #a88a02;
+
 .img_h {
   height: 2rem;
 }
 
 header,
 footer {
-  background-color: #b76f60;
+  background-color: $color-dark;
   color: white;
   .navbar {
     padding: 0;
@@ -14,11 +20,11 @@ footer {
     color: white;
   }
   ul li .nav-link:hover {
-    background-color: #de9f63;
+    background-color: $color-dark-hover;
     color: white;
   }
   a:hover {
-    color: #de9f63;
+    color: $color-dark-hover;
   }
 }
 
@@ -29,31 +35,24 @@ section {
   }
   a:hover,
   .nav-link:hover {
-    background-color: #de9f63;
+    background-color: $color-link;
     color: white;
   }
 }
 
-.bg_one {
-  background-color: #ddac9e;
-}
 .bg_two {
-  background-color: #dfd8cc;
+  background-color: $color-light;
 }
 
 .btn {
-  background-color: #de9f63;
-  border: none;
-}
-.btn:hover {
-  background-color: #a47545;
+  background-color: $color-link;
   border: none;
 }
 
-.img_banner {
-  aspect-ratio: 10/3;
-  overflow: hidden;
-  img {
-    max-width: 100%;
-  }
+.btn:hover,
+.btn::after,
+.btn:focus,
+.btn:active:hover {
+  background-color: $color-link-hover;
+  border: none;
 }

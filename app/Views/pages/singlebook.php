@@ -21,13 +21,13 @@
               <div class="row g-0">
                 <div class="col-3 cardBgColor">
                   <p class="text-center my-3 d-none stateDNone"><?= $row['card_state']?></p>
-                  <p class="text-center my-3 cardState"></p>
+                    <h5 class="text-center my-5 cardState" style="color: white;"></h5>
                 </div>
                 <div class="card-body col-9">
                     <div class="card-text d-inline-block float-end">
                       <a href="<?= base_url('Card/editCard/'.$row['card_id'])?>" class="btn btn-primary"><i class="fa-sharp fa-solid fa-pen"></i></a>
                     </div>
-                    <h5 class="card-title"><?= $row['card_title']?></h5>
+                    <h3 class="card-title"><?= $row['card_title']?></h3>
                     <p><?= $row['card_content']?></p>
                 </div>
               </div>
@@ -46,47 +46,47 @@ for (let i = 0; i < stateDNone.length; i++) {
   let num = parseInt(stateDNone[i].textContent);
   switch (num) {
     case 0:
-      cardBgColor[i].style.backgroundColor = "#ccac90";
+      cardBgColor[i].style.backgroundColor = "#717098";
       cardState[i].innerText = "未測驗";
       break;
     case 1:
-      cardBgColor[i].style.backgroundColor = "#f59598";
+      cardBgColor[i].style.backgroundColor = "#4d6a92";
       cardState[i].innerText = "差";
       break;
     case 2:
-      cardBgColor[i].style.backgroundColor = "#f59598";
+      cardBgColor[i].style.backgroundColor = "#4d6a92";
       cardState[i].innerText = "差";
       break;
     case 3:
-      cardBgColor[i].style.backgroundColor = "#febd7d";
+      cardBgColor[i].style.backgroundColor = "#76acc6";
       cardState[i].innerText = "弱";
       break;
     case 4:
-      cardBgColor[i].style.backgroundColor = "#febd7d";
+      cardBgColor[i].style.backgroundColor = "#76acc6";
       cardState[i].innerText = "弱";
       break;
     case 5:
-      cardBgColor[i].style.backgroundColor = "#f9f08d";
+      cardBgColor[i].style.backgroundColor = "#78a681";
       cardState[i].innerText = "中";
       break;
     case 6:
-      cardBgColor[i].style.backgroundColor = "#f9f08d";
+      cardBgColor[i].style.backgroundColor = "#78a681";
       cardState[i].innerText = "中";
       break;
     case 7:
-      cardBgColor[i].style.backgroundColor = "#90cfb5";
+      cardBgColor[i].style.backgroundColor = "#a7c796";
       cardState[i].innerText = "可";
       break;
     case 8:
-      cardBgColor[i].style.backgroundColor = "#90cfb5";
+      cardBgColor[i].style.backgroundColor = "#a7c796";
       cardState[i].innerText = "可";
       break;
     case 9:
-      cardBgColor[i].style.backgroundColor = "#8abade";
+      cardBgColor[i].style.backgroundColor = "#e0c993";
       cardState[i].innerText = "佳";
       break;
     case 10:
-      cardBgColor[i].style.backgroundColor = "#8abade";
+      cardBgColor[i].style.backgroundColor = "#e0c993";
       cardState[i].innerText = "佳";
       break;
   }
