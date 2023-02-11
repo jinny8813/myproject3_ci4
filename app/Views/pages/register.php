@@ -4,8 +4,9 @@
         <div class="container p-5">
             <div class="row justify-content-center">
                 <div class="">
-                    <h2 class="text-center mb-3">註冊</h2>
-
+                    <h2 class="text-center m-3">註冊</h2>
+                    <hr>
+                    <div class="my-3">
                     <form action="<?= base_url("User/doRegister")?>" method="post">
                         <div class="form-group row mb-3">
                             <div class="col-4">
@@ -43,7 +44,7 @@
                             <button type="submit" name="submit" class="btn btn-primary col-2">註冊</button>
                         </div>
                     </form>
-
+                    </div>
                     <?php 
                     if(isset($error_messages)){
                         echo '<div class="alert alert-danger">' . esc($error_messages) . '</div>';

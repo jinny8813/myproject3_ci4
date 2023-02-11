@@ -4,8 +4,9 @@
         <div class="container p-5">
             <div class="row justify-content-center">
                 <div class="">
-                    <h2 class="text-center mb-3">登入</h2>
-
+                    <h2 class="text-center m-3">登入</h2>
+                    <hr>
+                    <div class="my-3">
                     <form method="POST" action="<?= base_url("User/doLogin")?>">
                     <div class="form-group row mb-3">
                             <div class="col-4">
@@ -23,11 +24,12 @@
                                 <input type="password" name="password" class="form-control" placeholder="Enter your password">
                             </div>
                         </div>
-              <div class="row mb-3 justify-content-center">
+                    
+              <div class="row justify-content-center">
               <button type="submit" name="submit" class="btn btn-primary col-2">送出</button>
               </div>
 		        </form>
-        
+                </div>
                 <?php 
                 if(isset($error_messages)){
                     echo '<div class="alert alert-danger">' . esc($error_messages) . '</div>';

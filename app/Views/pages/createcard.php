@@ -24,12 +24,36 @@
                 </div>
                 <div class="form-group row mb-3">
                     <div class="col-4">
-                        <label for="content">卡片內容</label>
+                        <label for="pronunciation">卡片音標</label>
                     </div>
                     <div class="col-8">
-                        <textarea  name="content"id="content" class="form-control" placeholder="請輸入內容" rows="10" required></textarea>
+                        <input type="text" name="pronunciation" id="pronunciation" class="form-control" placeholder="請輸入音標">
                     </div>
-                </div>    
+                </div>
+                <div class="form-group row mb-3">
+                    <div class="col-4">
+                        <label for="content">卡片翻譯</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" name="content" id="content" class="form-control" placeholder="請輸入標題" required>
+                    </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <div class="col-4">
+                        <label for="e_sentence">範例造句</label>
+                    </div>
+                    <div class="col-8">
+                        <textarea  name="e_sentence"id="e_sentence" class="form-control" placeholder="請輸入範例造句" rows="4"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <div class="col-4">
+                        <label for="c_sentence">造句翻譯</label>
+                    </div>
+                    <div class="col-8">
+                        <textarea  name="c_sentence"id="c_sentence" class="form-control" placeholder="請輸入造句翻譯" rows="4" required></textarea>
+                    </div>
+                </div>  
                 <br>
                 <div class="row mb-3  justify-content-center">
                     <button type="submit" name="submit" id="button" class="btn btn-primary col-2" onclick="doCreateCard()">送出</button>

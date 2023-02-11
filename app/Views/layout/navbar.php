@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-lg ">
+  <nav class="navbar fixed-top navbar-expand-lg bg_dark">
       <div class="img_h">
         <a class="navbar-brand p-3" href="<?php echo site_url('User') ?>" style="color:white"
           ><img src="<?= base_url('../../public/assets/images/icon.png') ?>" class="h-100 px-2" />GoVoc
@@ -8,7 +8,7 @@
 
       <button class="navbar-toggler p-3" style="border: none;" data-bs-toggle="collapse" data-bs-target="#navbar">
         <i class="fas fa-bars" style="color:white"></i>
-    </button>
+      </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbar">
       <ul class="navbar-nav">
@@ -26,5 +26,8 @@
         </li>
       </ul>
     </div>
-    
+  </nav>
+    <div>
+      <br>
+    </div>
 </header>

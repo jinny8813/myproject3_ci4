@@ -37,6 +37,10 @@ section .nav-link:hover {
   color: white;
 }
 
+.bg_dark {
+  background-color: #224201;
+}
+
 .bg_two {
   background-color: #f2f0ee;
 }
