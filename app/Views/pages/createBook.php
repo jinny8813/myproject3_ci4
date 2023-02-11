@@ -56,7 +56,7 @@
     })
     .done(function(e){
         //window.location.reload();
-        window.location.href = `<?= base_url('Book/myDesk')?>`;
+        window.location.href = `<?= base_url('Book')?>`;
     })
     .fail(function(e){
         try{

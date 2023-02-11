@@ -13,8 +13,8 @@ class BookModel extends Model
         $db = \Config\Database::connect();
         $builder = $db->table('books b');
         $query = $builder->select("b.book_title,b.book_id,b.create_at,COUNT(c.card_id)AS card_count")
+                ->join('cards c','b.book_id=c.book_id','left')
                 ->where('b.user_id', $user_id)
-                ->join('cards c','b.book_id=c.book_id')
                 ->groupBy('c.book_id')
                 ->orderBy('b.book_id', 'desc')
                 ->get()->getResult();

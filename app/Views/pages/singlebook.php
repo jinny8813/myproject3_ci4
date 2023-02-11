@@ -6,14 +6,18 @@
         <div class="col-12">
           <h3 class="p-3 m-3 text-center">書名:<?= $book_id['book_id']?></h3>
           <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-primary" type="submit">Search</button>
+            <input class="form-control me-2" type="search" placeholder="搜尋書本" aria-label="Search">
+            <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
           </form>
           <hr>
+
           <div class="py-3">
-            <a href="<?= base_url('Card/createCard/'.$book_id['book_id'])?>" class="btn btn-primary mx-3">建立字卡</a>
-            <a href="#" class="btn btn-primary mx-3 float-end">排序</a>
-            <a href="#" class="btn btn-primary mx-3 float-end">排序</a>
+            <a href="<?= base_url('Book')?>" class="btn btn-primary float-start mx-1"><i class="fa-solid fa-arrow-left"></i></a>
+            <a href="<?= base_url('Book/review/'.$book_id['book_id'])?>" class="btn btn-primary float-start mx-1"><i class="fa-solid fa-chalkboard-user"></i> 複習</a>
+            <a href="<?= base_url('Card/createCard/'.$book_id['book_id'])?>" class="btn btn-primary float-start mx-1"><i class="fa-solid fa-plus"></i> 新增</a>
+            <a href="#" class="btn btn-primary float-end mx-1">...</a>
+            <a href="#" class="btn btn-primary float-end mx-1">...</a>
+            <br>
           </div>
 
           <?php foreach($cards as $row):?>
