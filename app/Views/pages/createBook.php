@@ -73,7 +73,7 @@
         
                     <div class="text-center row justify-content-center py-5">
                         <p class="text-center col-12">回到書櫃</p>
-                        <a href="<?php echo base_url('Book/myDesk') ?>" class="btn btn-primary col-2">返回</a>
+                        <a href="<?php echo base_url('Book') ?>" class="btn btn-primary col-2">返回</a>
                     </div>
         </div>
       </div>
