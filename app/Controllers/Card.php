@@ -43,96 +43,29 @@ class Card extends BaseController
         if($this->isLogin()){
             $book_id = $this->request->getPost("book_id");
             $title = $this->request->getPost("title");
+            $pronunciation = $this->request->getPost("pronunciation");
             $content = $this->request->getPost("content");
+            $e_sentence = $this->request->getPost("e_sentence");
+            $c_sentence = $this->request->getPost("c_sentence");
             $cardModel = new CardModel();
             $values = [
                 'book_id'=>$book_id,
                 'card_title'=>$title,
+                'card_pronunciation'=>$pronunciation,
                 'card_content'=>$content,
-                'card_state'=>0
+                'card_e_sentence'=>$e_sentence,
+                'card_c_sentence'=>$c_sentence,
+                'card_state'=>0,
+                'card_star'=>0
             ];
             $cardModel->insert($values);
             $arr=['success_messages'=>"發文成功!!將跳轉回所有文章頁面",
                     'status_code'=>200];
-            //echo json_encode($arr);
             return $this->response->setJSON($arr);
-            // return view('pages/bloghome');
         }else{
             return redirect()->to("User/login");
         }                
     }
 
-    // public function singlebook($user_id)
-    // {
-    //     if($this->isLogin()){
-    //         $cardModel = new CardModel();
-    //         $data['books'] = $cardModel->findAll($user_id);
-    //         return view("pages/singlebook",array_merge($this->memberData,$data)); 
-    //     }else{
-    //         return view('pages/login');
-    //     }
-    // }
-
-    // public function personal()
-    // {
-    //     if($this->isLogin()){
-    //         $blogModel = new BlogModel();
-    //         $data['blogs'] = $blogModel->where('authorId', $this->memberData['userId'])->orderBy('id', 'DESC')->findAll();
-    //         if($data){
-    //             return view('pages/personal',array_merge($this->memberData,$data));
-    //         }else{
-    //             $err=['error_messages'=>"尚未發表文章",
-    //             'status_code'=>400];
-    //             return view('pages/personal',array_merge($this->memberData,$err));
-    //         }
-    //     }else{
-    //         return view('pages/login');
-    //     }
-    // }
-
-    // public function editBlog($id)
-    // {
-    //     if($this->isLogin()){
-    //         $blogModel = new BlogModel();
-    //         $data['blogs'] = $blogModel->find($id);
-    //         return view("pages/editblog",array_merge($this->memberData,$data)); 
-    //     }else{
-    //         return view('pages/login');
-    //     }
-    // }
-
-    // public function doEdit()
-    // {
-    //     if($this->isLogin()){
-    //         $blogModel = new BlogModel();
-    //         $id = $this->request->getPost("blogID");
-    //         $blogModel->find($id);
-    //         $title = $this->request->getPost("title");
-    //         $content = $this->request->getPost("content");
-    //         $values = [
-    //             'title'=>$title,
-    //             'content'=>$content,
-    //         ];
-    //         $blogModel->update($id,$values);
-    //         $arr=['success_messages'=>"發文成功!!將跳轉回所有文章頁面",
-    //             'status_code'=>200];
-    //         //echo json_encode($arr);
-    //         return $this->response->setJSON($arr);
-    //         // return view('pages/bloghome');
-    //     }else{
-    //         return view('pages/login');
-    //     }
-    // }
-
-    // public function delete($id)
-    // {
-    //     if($this->isLogin()){
-    //         $blogModel = new BlogModel();
-    //         $blogModel->delete($id);
-    //         return redirect()->to(base_url('Blog'));
-    //     }else{
-    //         return view('pages/login');
-    //     }
-    // }
 }
 

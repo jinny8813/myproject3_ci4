@@ -5,6 +5,7 @@
       <div class="row justify-content-center">
         <div class="col-12 ">
           <h3 class="p-3 m-3 text-center">創建卡片</h3>
+          <hr>
             <form action="" method="post" id="createCardForm">
                 <div class="form-group row mb-3 d-none">
                     <div class="col-4">
@@ -16,7 +17,7 @@
                 </div>
                 <div class="form-group row mb-3">
                     <div class="col-4">
-                        <label for="title">卡片標題</label>
+                        <label for="title">卡片標題:</label>
                     </div>
                     <div class="col-8">
                         <input type="text" name="title" id="title" class="form-control" placeholder="請輸入標題" required>
@@ -24,7 +25,7 @@
                 </div>
                 <div class="form-group row mb-3">
                     <div class="col-4">
-                        <label for="pronunciation">卡片音標</label>
+                        <label for="pronunciation">卡片音標:</label>
                     </div>
                     <div class="col-8">
                         <input type="text" name="pronunciation" id="pronunciation" class="form-control" placeholder="請輸入音標">
@@ -32,7 +33,7 @@
                 </div>
                 <div class="form-group row mb-3">
                     <div class="col-4">
-                        <label for="content">卡片翻譯</label>
+                        <label for="content">卡片翻譯:</label>
                     </div>
                     <div class="col-8">
                         <input type="text" name="content" id="content" class="form-control" placeholder="請輸入標題" required>
@@ -40,7 +41,7 @@
                 </div>
                 <div class="form-group row mb-3">
                     <div class="col-4">
-                        <label for="e_sentence">範例造句</label>
+                        <label for="e_sentence">範例造句:</label>
                     </div>
                     <div class="col-8">
                         <textarea  name="e_sentence"id="e_sentence" class="form-control" placeholder="請輸入範例造句" rows="4"></textarea>
@@ -48,7 +49,7 @@
                 </div>
                 <div class="form-group row mb-3">
                     <div class="col-4">
-                        <label for="c_sentence">造句翻譯</label>
+                        <label for="c_sentence">造句翻譯:</label>
                     </div>
                     <div class="col-8">
                         <textarea  name="c_sentence"id="c_sentence" class="form-control" placeholder="請輸入造句翻譯" rows="4" required></textarea>
@@ -66,7 +67,10 @@
 
     let book_id = document.getElementById("book_id").value;
     let title = document.getElementById("title").value;
+    let pronunciation = document.getElementById("pronunciation").value;
     let content = document.getElementById("content").value;
+    let e_sentence = document.getElementById("e_sentence").value;
+    let c_sentence = document.getElementById("c_sentence").value;
 
     $.ajax({
         url: "<?= base_url("Card/doCreateCard")?>",
@@ -75,7 +79,10 @@
         data: {
             book_id:book_id,
             title:title,
-            content:content
+            pronunciation:pronunciation,
+            content:content,
+            e_sentence:e_sentence,
+            c_sentence:c_sentence
         }
     })
     .done(function(e){
