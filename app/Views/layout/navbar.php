@@ -13,16 +13,22 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbar">
       <ul class="navbar-nav">
         <li class="nav-item ">
-        <a class="nav-link p-3" href="<?php echo site_url('User/bloghome') ?>">雜學探險徑</a>
+        <a class="nav-link p-3" href="<?= base_url('Book')?>">我的書櫃</a>
         </li>
         <li class="nav-item ">
-        <a class="nav-link p-3" href="<?php echo site_url('User/source') ?>">補給充電站</a>
+        <a class="nav-link p-3" href="#">所有單字</a>
         </li>
         <li class="nav-item ">
-        <a class="nav-link p-3" href="<?php echo site_url('User/board') ?>">嶼之公告欄</a>
+        <a class="nav-link p-3" href="<?= base_url('Quiz')?>">開始測驗</a>
         </li>
         <li class="nav-item ">
-        <a class="nav-link p-3" href="<?= isset($nickname)? base_url('User/personal'):base_url('User/login')?>"><?= isset($nickname)? '我的筆記本':'登入與註冊'?></a>
+        <a class="nav-link p-3" href="<?= base_url('Statistics')?>">統計分析</a>
+        </li>
+        <li class="nav-item ">
+        <a class="nav-link p-3" href="#">個人設定</a>
+        </li>
+        <li class="nav-item ">
+        <a class="nav-link p-3" href="<?php echo base_url('User/doLogout') ?>">登出</a>
         </li>
       </ul>
     </div>

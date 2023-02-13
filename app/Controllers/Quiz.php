@@ -37,8 +37,8 @@ class Quiz extends BaseController
             $select_wrong = $this->request->getPost("select_wrong");
             $select_state = $this->request->getPost("select_state");
             $select_amount = $this->request->getPost("select_amount");
-            $cardModel = new CardModel();
-            $data = $cardModel->select('card_id')->where('book_id', $select_book)->orderBy('title', 'RANDOM')->findAll(5);
+            $quizModel = new QuizModel();
+            $data = $quizModel->getNewQuiz($select_book,$select_old,$select_wrong,$select_amount);
             $quiz_list="";
             foreach ($data as $i):
                 $quiz_list=$quiz_list.$i['card_id']."_";
@@ -47,6 +47,9 @@ class Quiz extends BaseController
             $values = [
                 'user_id'=>$user_id,
                 'select_book'=>$select_book,
+                'select_old'=>$select_old,
+                'select_wrong'=>$select_wrong,
+                'select_amount'=>$select_amount,
                 'quiz_list'=>$quiz_list
             ];
             $quizModel->insert($values);
@@ -69,7 +72,11 @@ class Quiz extends BaseController
             $quiz_id['quiz_id'] = ['quiz_id'=>$quizData[0]['quiz_id']];
             $tmp=array_merge($quiz_id,$data);
             $tmp=array_merge($this->memberData,$tmp);
-            return view('pages/startquiz',$tmp);
+            if (count($data['cards'])==0){
+                return view('pages/noconformquiz');
+            }else{
+                return view('pages/startquiz',$tmp);
+            }
         }else{
             return redirect()->to("User/login");
         }                

@@ -8,11 +8,10 @@
             <form action="" method="post" id="createQuizForm">
                 <div class="form-group row mb-3">
                     <div class="col-4">
-                        <label for="select_book">選擇書本</label>
+                        <label for="select_book">選擇書本:</label>
                     </div>
                     <div class="col-8">
                         <select name="select_book"id="select_book" class="form-select">
-                            <option value="all">不限</option>
                             <?php foreach($books as $row):?>
                                 <option value="<?= $row['book_id']?>"><?= $row['book_title']?></option>
                             <?php endforeach;?>
@@ -21,11 +20,11 @@
                 </div>
                 <div class="form-group row mb-3">
                     <div class="col-4">
-                        <label for="select_old">未複習逾</label>
+                        <label for="select_old">未複習逾:</label>
                     </div>
                     <div class="col-8">
-                        <select name="select_old"id="select_old" class="form-select" disabled>
-                            <option value="no">不限</option>
+                        <select name="select_old"id="select_old" class="form-select">
+                            <option value="0">不限</option>
                             <option value="3">3天</option>
                             <option value="7">7天</option>
                             <option value="10">10天</option>
@@ -36,11 +35,11 @@
                 </div>
                 <div class="form-group row mb-3">
                     <div class="col-4">
-                        <label for="select_wrong">近一月逾</label>
+                        <label for="select_wrong">近一月逾:</label>
                     </div>
                     <div class="col-8">
-                        <select name="select_wrong"id="select_wrong" class="form-select" disabled>
-                            <option value="no">不限</option>
+                        <select name="select_wrong"id="select_wrong" class="form-select">
+                            <option value="0">不限</option>
                             <option value="5">5錯誤</option>
                             <option value="10">10錯誤</option>
                             <option value="15">15錯誤</option>
@@ -51,7 +50,7 @@
                 </div>
                 <div class="form-group row mb-3">
                     <div class="col-4">
-                        <label for="select_state">字卡狀態</label>
+                        <label for="select_state">字卡狀態:</label>
                     </div>
                     <div class="col-8">
                         <select name="select_state"id="select_state" class="form-select" disabled>
@@ -68,10 +67,10 @@
                 <br>
                 <div class="form-group row mb-3">
                     <div class="col-4">
-                        <label for="select_amount">測驗數量</label>
+                        <label for="select_amount">測驗數量:</label>
                     </div>
                     <div class="col-8">
-                        <select name="select_amount"id="select_amount" class="form-select" disabled>
+                        <select name="select_amount"id="select_amount" class="form-select">
                             <option value="10">10</option>
                             <option value="20">20</option>
                             <option value="50">50</option>
@@ -83,13 +82,13 @@
                 </div>
                 <div class="form-group row mb-3">
                     <div class="col-4">
-                        <label for="">隨機補足</label>
+                        <label for="">隨機補足:</label>
                     </div>
                     <div class="col-8">
-                        <input class="form-check-input" type="radio" name="add_random" id="add_random1" value="no">
+                        <input class="form-check-input" type="radio" name="add_random" id="add_random1" checked value="no">
                         <label class="form-check-label" for="add_random1">不補足，有多少測驗多少</label>
                         <br>
-                        <input class="form-check-input" type="radio" name="add_random" id="add_random2" checked value="random">
+                        <input class="form-check-input" type="radio" name="add_random" id="add_random2" disabled value="random">
                         <label class="form-check-label" for="add_random2">隨機補足至選擇之測驗數量</label>
                     </div>
                 </div>

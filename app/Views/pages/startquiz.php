@@ -29,6 +29,8 @@
 
 <script>
 const bigArr=<?php echo json_encode($cards); ?>;
+let len =Object.keys(bigArr).length;
+
 const currentNum = document.getElementById('currentNum');
 const frountTitle = document.getElementById('frountTitle');
 const partOfSpeech = document.getElementById('partOfSpeech');
@@ -45,6 +47,8 @@ const theChoice2 = document.getElementById('theChoice2');
 const theChoice3 = document.getElementById('theChoice3');
 let selections = [], currentIndex=0;
 
+console.log(len);
+
 flipCard.addEventListener('click', () => {
   frountTitle.classList.add('d-none');
   partOfSpeech.classList.add('d-none');
@@ -58,7 +62,7 @@ flipCard.addEventListener('click', () => {
 
 theChoice1.addEventListener('click', () => {
   selections.push(document.getElementById("theChoice1").textContent);
-    if(currentIndex>=5){
+    if(currentIndex>=len){
     console.log(selections);
     storeQuiz();
     }else{
@@ -67,7 +71,7 @@ theChoice1.addEventListener('click', () => {
   })
 theChoice2.addEventListener('click', () => {
   selections.push(document.getElementById("theChoice2").textContent);
-    if(currentIndex>=5){
+    if(currentIndex>=len){
     console.log(selections);
     storeQuiz();
     }else{
@@ -76,7 +80,7 @@ theChoice2.addEventListener('click', () => {
   })
 theChoice3.addEventListener('click', () => {
   selections.push(document.getElementById("theChoice3").textContent);
-    if(currentIndex>=5){
+    if(currentIndex>=len){
     console.log(selections);
     storeQuiz();
     }else{
