@@ -4,7 +4,7 @@ use CodeIgniter\Model;
 
 class EventlogModel extends Model
 {
-    protected $table = 'eventLog';
+    protected $table = 'eventlog';
     protected $primarykey = 'log_id';
 
     protected $allowedFields = ['log_id','quiz_id','card_id','choose','create_at'];

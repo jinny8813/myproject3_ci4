@@ -17,10 +17,28 @@
                 </div>
                 <div class="form-group row mb-3">
                     <div class="col-4">
-                        <label for="title">卡片標題:</label>
+                        <label for="title">標題:</label>
                     </div>
                     <div class="col-8">
                         <input type="text" name="title" id="title" class="form-control" placeholder="請輸入標題" required>
+                    </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <div class="col-4">
+                        <label for="part_of_speech">選擇詞性:</label>
+                    </div>
+                    <div class="col-8">
+                        <select name="part_of_speech"id="part_of_speech" class="form-select">
+                            <option value="others">其他</option>
+                            <option value="noun">noun</option>
+                            <option value="pronoun">pronoun</option>
+                            <option value="verb">verb</option>
+                            <option value="adjective">adjective</option>
+                            <option value="adverb">adverb</option>
+                            <option value="preposition">preposition</option>
+                            <option value="conjunction">conjunction</option>
+                            <option value="phrase">phrase</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row mb-3">
@@ -44,7 +62,7 @@
                         <label for="e_sentence">範例造句:</label>
                     </div>
                     <div class="col-8">
-                        <textarea  name="e_sentence"id="e_sentence" class="form-control" placeholder="請輸入範例造句" rows="4"></textarea>
+                        <textarea  name="e_sentence"id="e_sentence" class="form-control" placeholder="請輸入範例造句" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="form-group row mb-3">
@@ -52,7 +70,7 @@
                         <label for="c_sentence">造句翻譯:</label>
                     </div>
                     <div class="col-8">
-                        <textarea  name="c_sentence"id="c_sentence" class="form-control" placeholder="請輸入造句翻譯" rows="4" required></textarea>
+                        <textarea  name="c_sentence"id="c_sentence" class="form-control" placeholder="請輸入造句翻譯" rows="3" required></textarea>
                     </div>
                 </div>  
                 <br>
@@ -67,6 +85,7 @@
 
     let book_id = document.getElementById("book_id").value;
     let title = document.getElementById("title").value;
+    let part_of_speech = document.getElementById("part_of_speech").value;
     let pronunciation = document.getElementById("pronunciation").value;
     let content = document.getElementById("content").value;
     let e_sentence = document.getElementById("e_sentence").value;
@@ -79,6 +98,7 @@
         data: {
             book_id:book_id,
             title:title,
+            part_of_speech:part_of_speech,
             pronunciation:pronunciation,
             content:content,
             e_sentence:e_sentence,

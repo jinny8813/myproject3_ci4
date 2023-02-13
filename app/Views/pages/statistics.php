@@ -16,25 +16,34 @@
 
           <div class="p-3 border border-secondary rounded row justify-content-center">
             <h5 class="text-center" id="today"></h5>
-            <p>目標測驗數: 200 個</p>
-            <p id="todayLogs">本日測驗數: 個</p>
-            <p id="todayPercent">達成率: %</p>
+            <p class="p_mb">目標測驗數: 200 個</p>
+            <p class="p_mb" id="todayLogs">本日測驗數: 個</p>
+            <p class="p_mb" id="todayPercent">達成率: %</p>
             <hr>
-            <p>今日測驗狀況: </p>
-            <div class="col-8">
+            <p class="p_mb">今日測驗狀況: </p>
+            <div class="col-3">
+                <br>
+            </div>
+            <div class="col-6">
                 <canvas id="doughnut-chart"></canvas>
             </div>
-            <p>當前字卡狀態: </p>
+            <div class="col-3">
+              <br>
+              <p class="p_mb small text-center"><i class="fa-solid fa-square" style="color: #5c5246;"></i> 熟悉</p>
+              <p class="p_mb small text-center"><i class="fa-solid fa-square" style="color: #a99a85;"></i> 模糊</p>
+              <p class="p_mb small text-center"><i class="fa-solid fa-square" style="color: #e3ddd1;"></i> 忘記</p>
+            </div>
+            <p class="p_mb">當前字卡狀態: </p>
             <div class="col-12">
                 <canvas id="bar-chart"></canvas>
             </div>
             <hr>
-            <p>本日新字卡: 個</p>
-            <p id="myCards">總字卡數: 個</p>
-            <p>本日測驗數: 個</p>
-            <p>累積測驗數: </p>
-            <p>持續天數: 天</p>
-            <p>累積天數: 天</p>
+            <p class="p_mb">本日新字卡: 個</p>
+            <p class="p_mb" id="myCards">總字卡數: 個</p>
+            <p class="p_mb">本日測驗數: 個</p>
+            <p class="p_mb">累積測驗數: 個</p>
+            <p class="p_mb">持續天數: 天</p>
+            <p class="p_mb">累積天數: 天</p>
           </div>
 
         </div>
@@ -42,7 +51,7 @@
     </div>
 <script>
     let today = document.getElementById('today');
-    today.innerText = new Date();
+    today.innerText = new Date().toJSON().slice(0, 10);
 
   const todayLogsArr=<?php echo json_encode($today_logs); ?>;
   let todayLogs = document.getElementById('todayLogs');
@@ -100,6 +109,9 @@
       ]
     },
     options: {
+      legend:{
+        display:false
+      }
     }
 });
 

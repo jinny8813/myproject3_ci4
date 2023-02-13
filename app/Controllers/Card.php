@@ -43,6 +43,7 @@ class Card extends BaseController
         if($this->isLogin()){
             $book_id = $this->request->getPost("book_id");
             $title = $this->request->getPost("title");
+            $part_of_speech = $this->request->getPost("part_of_speech");
             $pronunciation = $this->request->getPost("pronunciation");
             $content = $this->request->getPost("content");
             $e_sentence = $this->request->getPost("e_sentence");
@@ -50,11 +51,12 @@ class Card extends BaseController
             $cardModel = new CardModel();
             $values = [
                 'book_id'=>$book_id,
-                'card_title'=>$title,
-                'card_pronunciation'=>$pronunciation,
-                'card_content'=>$content,
-                'card_e_sentence'=>$e_sentence,
-                'card_c_sentence'=>$c_sentence,
+                'card_title'=>trim((string)$title),
+                'part_of_speech'=>$part_of_speech,
+                'card_pronunciation'=>trim((string)$pronunciation),
+                'card_content'=>trim((string)$content),
+                'card_e_sentence'=>trim((string)$e_sentence),
+                'card_c_sentence'=>trim((string)$c_sentence),
                 'card_state'=>0,
                 'card_star'=>0
             ];
