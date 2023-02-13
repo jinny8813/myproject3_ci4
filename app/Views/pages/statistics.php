@@ -122,7 +122,7 @@
       datasets: [
         {
           label: "個",
-          backgroundColor: ["#717098", "#4d6a92","#76acc6","#78a681","#a7c796","#e0c993"],
+          backgroundColor: ["#717098", "#4d6a92","#76acc6","#6fae7b","#9ecd84","#e0d96e"],
           data: [s0,s1,s3,s5,s7,s9]
         }
       ]

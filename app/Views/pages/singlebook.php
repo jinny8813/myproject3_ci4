@@ -70,27 +70,27 @@ for (let i = 0; i < stateDNone.length; i++) {
       cardState[i].innerText = "弱";
       break;
     case 5:
-      cardBgColor[i].style.backgroundColor = "#78a681";
+      cardBgColor[i].style.backgroundColor = "#6fae7b";
       cardState[i].innerText = "中";
       break;
     case 6:
-      cardBgColor[i].style.backgroundColor = "#78a681";
+      cardBgColor[i].style.backgroundColor = "#6fae7b";
       cardState[i].innerText = "中";
       break;
     case 7:
-      cardBgColor[i].style.backgroundColor = "#a7c796";
+      cardBgColor[i].style.backgroundColor = "#9ecd84";
       cardState[i].innerText = "可";
       break;
     case 8:
-      cardBgColor[i].style.backgroundColor = "#a7c796";
+      cardBgColor[i].style.backgroundColor = "#9ecd84";
       cardState[i].innerText = "可";
       break;
     case 9:
-      cardBgColor[i].style.backgroundColor = "#e0c993";
+      cardBgColor[i].style.backgroundColor = "#e0d96e";
       cardState[i].innerText = "佳";
       break;
     case 10:
-      cardBgColor[i].style.backgroundColor = "#e0c993";
+      cardBgColor[i].style.backgroundColor = "#e0d96e";
       cardState[i].innerText = "佳";
       break;
   }

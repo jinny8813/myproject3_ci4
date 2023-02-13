@@ -7,14 +7,15 @@
           <h3 class="p-3 m-3 text-center">測驗<?= $quiz_id['quiz_id']?>進行中</h3>
           <hr>
 
-          <!-- <div id='aQuiz'></div>
-          <div class='btn' id='next'><a href='#'>Next</a></div> -->
-
             <h5 class="fs-3" id="currentNum"></h5>
             <div class="card my-3">
                 <div class="card-body py-5 my-5">
-                    <h5 class="card-title text-center fs-3" id="frountTitle"></h5>
-                    <h5 class="text-center fs-3 d-none"  id="backContent"></h5>
+                    <h5 class="card-title text-center fs-1" id="frountTitle"></h5>
+                    <p class="text-center p_mb" id="partOfSpeech"></p>
+                    <p class="text-center p_mb" id="pronunciation"></p>
+                    <h5 class="text-center fs-1 d-none"  id="backContent"></h5>
+                    <p class="text-center p_mb d-none small" id="e_sentence"></p>
+                    <p class="text-center p_mb d-none small" id="c_sentence"></p>
                 </div>
             </div>
             <div class="row justify-content-center mb-3" id="flipCard">
@@ -30,7 +31,13 @@
 const bigArr=<?php echo json_encode($cards); ?>;
 const currentNum = document.getElementById('currentNum');
 const frountTitle = document.getElementById('frountTitle');
+const partOfSpeech = document.getElementById('partOfSpeech');
+const pronunciation = document.getElementById('pronunciation');
+
 const backContent = document.getElementById('backContent');
+const e_sentence = document.getElementById('e_sentence');
+const c_sentence = document.getElementById('c_sentence');
+
 const flipCard = document.getElementById('flipCard');
 const theChoice = document.getElementById('theChoice');
 const theChoice1 = document.getElementById('theChoice1');
@@ -40,7 +47,11 @@ let selections = [], currentIndex=0;
 
 flipCard.addEventListener('click', () => {
   frountTitle.classList.add('d-none');
+  partOfSpeech.classList.add('d-none');
+  pronunciation.classList.add('d-none');
   backContent.classList.remove('d-none');
+  e_sentence.classList.remove('d-none');
+  c_sentence.classList.remove('d-none');
   flipCard.classList.add('d-none');
   theChoice.classList.remove('d-none');
 })
@@ -75,12 +86,20 @@ theChoice3.addEventListener('click', () => {
 
 function setNext(){
   frountTitle.classList.remove('d-none');
+  partOfSpeech.classList.remove('d-none');
+  pronunciation.classList.remove('d-none');
   backContent.classList.add('d-none');
+  e_sentence.classList.add('d-none');
+  c_sentence.classList.add('d-none');
   flipCard.classList.remove('d-none');
   theChoice.classList.add('d-none');
   currentNum.innerText = currentIndex+1;
   frountTitle.innerText = bigArr[currentIndex]['card_title'];
+  partOfSpeech.innerText = bigArr[currentIndex]['part_of_speech'];
+  pronunciation.innerText = bigArr[currentIndex]['card_pronunciation'];
   backContent.innerText = bigArr[currentIndex]['card_content'];
+  e_sentence.innerText = bigArr[currentIndex]['card_e_sentence'];
+  c_sentence.innerText = bigArr[currentIndex]['card_c_sentence'];
   currentIndex++;
 }
 
