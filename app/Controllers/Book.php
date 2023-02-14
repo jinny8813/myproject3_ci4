@@ -20,7 +20,7 @@ class Book extends BaseController
     public function createBook()
     {
         if($this->isLogin()){
-            return view('pages/createBook',$this->memberData);
+            return view('pages/createbook',$this->memberData);
         }else{
             return redirect()->to("User/login");
         }
