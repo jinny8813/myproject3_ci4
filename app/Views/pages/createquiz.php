@@ -53,14 +53,14 @@
                         <label for="select_state">字卡狀態:</label>
                     </div>
                     <div class="col-8">
-                        <select name="select_state"id="select_state" class="form-select" disabled>
-                            <option value="no">不限</option>
+                        <select name="select_state"id="select_state" class="form-select">
+                            <option value="已測驗">已測驗</option>
                             <option value="未測驗">未測驗</option>
-                            <option value="差">差</option>
-                            <option value="弱">弱</option>
-                            <option value="中">中</option>
-                            <option value="可">可</option>
-                            <option value="佳">佳</option>
+                            <option value="差" disabled>差</option>
+                            <option value="弱" disabled>弱</option>
+                            <option value="中" disabled>中</option>
+                            <option value="可" disabled>可</option>
+                            <option value="佳" disabled>佳</option>
                         </select>
                     </div>
                 </div>

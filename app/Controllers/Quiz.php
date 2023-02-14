@@ -38,7 +38,7 @@ class Quiz extends BaseController
             $select_state = $this->request->getPost("select_state");
             $select_amount = $this->request->getPost("select_amount");
             $quizModel = new QuizModel();
-            $data = $quizModel->getNewQuiz($select_book,$select_old,$select_wrong,$select_amount);
+            $data = $quizModel->getNewQuiz($select_book,$select_old,$select_wrong,$select_state,$select_amount);
             $quiz_list="";
             foreach ($data as $i):
                 $quiz_list=$quiz_list.$i['card_id']."_";
@@ -49,6 +49,7 @@ class Quiz extends BaseController
                 'select_book'=>$select_book,
                 'select_old'=>$select_old,
                 'select_wrong'=>$select_wrong,
+                'select_state'=>$select_state,
                 'select_amount'=>$select_amount,
                 'quiz_list'=>$quiz_list
             ];
