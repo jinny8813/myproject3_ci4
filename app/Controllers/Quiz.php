@@ -128,10 +128,10 @@ class Quiz extends BaseController
                             $update_state=$update_state+1;
                             break;
                     }
-                    if($update_state>10){
-                        $update_state==10;
-                    }else if($update_state<1){
-                        $update_state==1;
+                    if($update_state>=10){
+                        $update_state=10;
+                    }else if($update_state<=1){
+                        $update_state=1;
                     }
                 }
                 $cardModel->where('card_id', $state[0]['card_id'])->set('card_state', $update_state)->update();

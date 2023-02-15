@@ -17,7 +17,9 @@ class QuizModel extends Model
                 $query = $builder->select("c.card_id")
                     ->where('c.book_id', $book_id)
                     ->where('DATEDIFF(CURDATE(),DATE(c.create_at))>=', $select_old)
+                    ->whereIn('c.card_state', [0])
                     ->groupBy('c.card_id')
+                    ->orderBy('title', 'RANDOM')
                     ->limit($select_amount)
                     ->get()->getResult();
             }else{
@@ -29,6 +31,7 @@ class QuizModel extends Model
                     ->where('DATEDIFF(CURDATE(),DATE(e.create_at))<=', 30)
                     ->groupBy('c.card_id')
                     ->having('c_count>='+$select_wrong)
+                    ->orderBy('title', 'RANDOM')
                     ->limit($select_amount)
                     ->get()->getResult();
             }
@@ -39,6 +42,7 @@ class QuizModel extends Model
                     ->where('c.book_id', $book_id)
                     ->where('DATEDIFF(CURDATE(),DATE(e.create_at))>=', $select_old)
                     ->groupBy('c.card_id')
+                    ->orderBy('title', 'RANDOM')
                     ->limit($select_amount)
                     ->get()->getResult();
             }else{
@@ -50,6 +54,7 @@ class QuizModel extends Model
                     ->where('DATEDIFF(CURDATE(),DATE(e.create_at))<=', 30)
                     ->groupBy('c.card_id')
                     ->having('c_count>='+$select_wrong)
+                    ->orderBy('title', 'RANDOM')
                     ->limit($select_amount)
                     ->get()->getResult();
             }
