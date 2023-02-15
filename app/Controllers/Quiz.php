@@ -31,6 +31,8 @@ class Quiz extends BaseController
     public function doCreateQuiz()
     {
         if($this->isLogin()){
+            date_default_timezone_set('Asia/Taipei');
+            $date = date('Y-m-d H:i:s', strtotime('+5 hours'));
             $user_id = $this->memberData['user_id'];
             $select_book = $this->request->getPost("select_book");
             $select_old = $this->request->getPost("select_old");
@@ -51,7 +53,8 @@ class Quiz extends BaseController
                 'select_wrong'=>$select_wrong,
                 'select_state'=>$select_state,
                 'select_amount'=>$select_amount,
-                'quiz_list'=>$quiz_list
+                'quiz_list'=>$quiz_list,
+                'create_at'=>$date,
             ];
             $quizModel->insert($values);
             $arr=['success_messages'=>"發文成功!!將跳轉回所有文章頁面",
@@ -86,6 +89,8 @@ class Quiz extends BaseController
     public function storeQuiz()
     {
         if($this->isLogin()){
+            date_default_timezone_set('Asia/Taipei');
+            $date = date('Y-m-d H:i:s', strtotime('+5 hours'));
             $quiz_id = $this->request->getPost("quiz_id");
             $selections = $this->request->getPost("selections");
             $bigArr = $this->request->getPost("bigArr");
@@ -94,7 +99,8 @@ class Quiz extends BaseController
                 $values = [
                     'quiz_id'=>$quiz_id,
                     'card_id'=>$bigArr[$i]['card_id'],
-                    'choose'=>$selections[$i]
+                    'choose'=>$selections[$i],
+                    'create_at'=>$date,
                 ];
                 $eventlogModel->insert($values);
             }
@@ -144,66 +150,5 @@ class Quiz extends BaseController
         }
     }
 
-    // public function personal()
-    // {
-    //     if($this->isLogin()){
-    //         $blogModel = new BlogModel();
-    //         $data['blogs'] = $blogModel->where('authorId', $this->memberData['userId'])->orderBy('id', 'DESC')->findAll();
-    //         if($data){
-    //             return view('pages/personal',array_merge($this->memberData,$data));
-    //         }else{
-    //             $err=['error_messages'=>"尚未發表文章",
-    //             'status_code'=>400];
-    //             return view('pages/personal',array_merge($this->memberData,$err));
-    //         }
-    //     }else{
-    //         return view('pages/login');
-    //     }
-    // }
-
-    // public function editBlog($id)
-    // {
-    //     if($this->isLogin()){
-    //         $blogModel = new BlogModel();
-    //         $data['blogs'] = $blogModel->find($id);
-    //         return view("pages/editblog",array_merge($this->memberData,$data)); 
-    //     }else{
-    //         return view('pages/login');
-    //     }
-    // }
-
-    // public function doEdit()
-    // {
-    //     if($this->isLogin()){
-    //         $blogModel = new BlogModel();
-    //         $id = $this->request->getPost("blogID");
-    //         $blogModel->find($id);
-    //         $title = $this->request->getPost("title");
-    //         $content = $this->request->getPost("content");
-    //         $values = [
-    //             'title'=>$title,
-    //             'content'=>$content,
-    //         ];
-    //         $blogModel->update($id,$values);
-    //         $arr=['success_messages'=>"發文成功!!將跳轉回所有文章頁面",
-    //             'status_code'=>200];
-    //         //echo json_encode($arr);
-    //         return $this->response->setJSON($arr);
-    //         // return view('pages/bloghome');
-    //     }else{
-    //         return view('pages/login');
-    //     }
-    // }
-
-    // public function delete($id)
-    // {
-    //     if($this->isLogin()){
-    //         $blogModel = new BlogModel();
-    //         $blogModel->delete($id);
-    //         return redirect()->to(base_url('Blog'));
-    //     }else{
-    //         return view('pages/login');
-    //     }
-    // }
 }
 

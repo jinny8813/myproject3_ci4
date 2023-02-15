@@ -41,6 +41,8 @@ class Card extends BaseController
     public function doCreateCard()
     {
         if($this->isLogin()){
+            date_default_timezone_set('Asia/Taipei');
+            $date = date('Y-m-d H:i:s', strtotime('+5 hours'));
             $book_id = $this->request->getPost("book_id");
             $title = $this->request->getPost("title");
             $part_of_speech = $this->request->getPost("part_of_speech");
@@ -58,7 +60,8 @@ class Card extends BaseController
                 'card_e_sentence'=>trim((string)$e_sentence),
                 'card_c_sentence'=>trim((string)$c_sentence),
                 'card_state'=>0,
-                'card_star'=>0
+                'card_star'=>0,
+                'create_at'=>$date,
             ];
             $cardModel->insert($values);
             $arr=['success_messages'=>"發文成功!!將跳轉回所有文章頁面",

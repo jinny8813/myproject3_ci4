@@ -66,6 +66,9 @@ class User extends BaseController
         }
     }
     public function doRegister(){
+        date_default_timezone_set('Asia/Taipei');
+        $date = date('Y-m-d H:i:s', strtotime('+5 hours'));
+        print_r($date);
         $email = $this->request->getPost("email");
         $password = $this->request->getPost("password");
         $cpassword = $this->request->getPost("cpassword");
@@ -94,6 +97,7 @@ class User extends BaseController
             'email'=>$email,
             'password'=>$password,
             'nickname'=>$nickname,
+            'create_at'=>$date,
         ];
         $query = $userModel->insert($values);
         if( !$query ){
