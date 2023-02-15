@@ -32,7 +32,7 @@ class Quiz extends BaseController
     {
         if($this->isLogin()){
             date_default_timezone_set('Asia/Taipei');
-            $date = date('Y-m-d H:i:s', strtotime('+5 hours'));
+            $date = date('Y-m-d H:i:s');
             $user_id = $this->memberData['user_id'];
             $select_book = $this->request->getPost("select_book");
             $select_old = $this->request->getPost("select_old");
@@ -90,7 +90,7 @@ class Quiz extends BaseController
     {
         if($this->isLogin()){
             date_default_timezone_set('Asia/Taipei');
-            $date = date('Y-m-d H:i:s', strtotime('+5 hours'));
+            $date = date('Y-m-d H:i:s');
             $quiz_id = $this->request->getPost("quiz_id");
             $selections = $this->request->getPost("selections");
             $bigArr = $this->request->getPost("bigArr");

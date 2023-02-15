@@ -42,7 +42,7 @@ class Card extends BaseController
     {
         if($this->isLogin()){
             date_default_timezone_set('Asia/Taipei');
-            $date = date('Y-m-d H:i:s', strtotime('+5 hours'));
+            $date = date('Y-m-d H:i:s');
             $book_id = $this->request->getPost("book_id");
             $title = $this->request->getPost("title");
             $part_of_speech = $this->request->getPost("part_of_speech");

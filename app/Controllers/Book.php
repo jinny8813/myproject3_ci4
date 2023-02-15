@@ -30,7 +30,7 @@ class Book extends BaseController
     {
         if($this->isLogin()){
             date_default_timezone_set('Asia/Taipei');
-            $date = date('Y-m-d H:i:s', strtotime('+5 hours'));
+            $date = date('Y-m-d H:i:s');
             $user_id = $this->request->getPost("user_id");
             $title = $this->request->getPost("title");
             $description = $this->request->getPost("description");
