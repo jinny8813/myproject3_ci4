@@ -50,8 +50,9 @@
       </div>
     </div>
 <script>
+  const dateArr=<?php echo json_encode($date); ?>;
     let today = document.getElementById('today');
-    today.innerText = new Date().toJSON().slice(0, 10);
+    today.innerText = dateArr;
 
   const todayLogsArr=<?php echo json_encode($today_logs); ?>;
   let todayLogs = document.getElementById('todayLogs');

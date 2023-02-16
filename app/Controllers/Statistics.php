@@ -25,12 +25,16 @@ class Statistics extends BaseController
                 $data_card_id[] = $i['card_id'];
             }
             $eventlogModel = new EventlogModel();
-            $where="DATE(create_at) = CURDATE()";
+            date_default_timezone_set('Asia/Taipei');
+            $date['date'] = date('Y-m-d H:i:s');
+            $ttt=date('Y-m-d');
+            $where="DATE(create_at) = '".$ttt."'";
             $data3['today_logs'] = $eventlogModel->where($where)->whereIn('card_id', $data_card_id)->findAll();
 
 
 
             $tmp=array_merge($data2,$data3);
+            $tmp=array_merge($tmp,$date);
             $tmp=array_merge($this->memberData,$tmp);
             return view('pages/statistics',$tmp);
         }else{
