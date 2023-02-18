@@ -32,7 +32,7 @@ class Quiz extends BaseController
     {
         if($this->isLogin()){
             date_default_timezone_set('Asia/Taipei');
-            $date = date('Y-m-d H:i:s');
+            $date = date('Y-m-d');
             $user_id = $this->memberData['user_id'];
             $select_book = $this->request->getPost("select_book");
             $select_old = $this->request->getPost("select_old");
@@ -40,7 +40,7 @@ class Quiz extends BaseController
             $select_state = $this->request->getPost("select_state");
             $select_amount = $this->request->getPost("select_amount");
             $quizModel = new QuizModel();
-            $data = $quizModel->getNewQuiz($select_book,$select_old,$select_wrong,$select_state,$select_amount);
+            $data = $quizModel->getNewQuiz($date,$select_book,$select_old,$select_wrong,$select_state,$select_amount);
             $quiz_list="";
             foreach ($data as $i):
                 $quiz_list=$quiz_list.$i['card_id']."_";
@@ -54,7 +54,7 @@ class Quiz extends BaseController
                 'select_state'=>$select_state,
                 'select_amount'=>$select_amount,
                 'quiz_list'=>$quiz_list,
-                'create_at'=>$date,
+                'create_at'=>date('Y-m-d H:i:s'),
             ];
             $quizModel->insert($values);
             $arr=['success_messages'=>"發文成功!!將跳轉回所有文章頁面",

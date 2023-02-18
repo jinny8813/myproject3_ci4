@@ -9,7 +9,7 @@ class QuizModel extends Model
 
     protected $allowedFields = ['quiz_id','user_id','select_book','select_old','select_wrong','select_state','select_amount','add_random','quiz_list','create_at'];
 
-    public function getNewQuiz($book_id,$select_old,$select_wrong,$select_state,$select_amount){
+    public function getNewQuiz($date,$book_id,$select_old,$select_wrong,$select_state,$select_amount){
         switch ($select_state){
             case "差":
                 $state=[1,2];
@@ -27,13 +27,16 @@ class QuizModel extends Model
                 $state=[9,10];
                 break;
         }
+        $wherec="DATEDIFF('{$date}',c.create_at)>={$select_old}";
+        $wheree="DATEDIFF('{$date}',e.create_at)>={$select_old}";
+        $where30="DATEDIFF('{$date}',e.create_at)<=30";
         $db = \Config\Database::connect();
         $builder = $db->table('cards c');
         if($select_state=="未測驗"){
             if($select_wrong==0){
                 $query = $builder->select("c.card_id")
                     ->where('c.book_id', $book_id)
-                    ->where('DATEDIFF(CURDATE(),DATE(c.create_at))>=', $select_old)
+                    ->where($wherec)
                     ->whereIn('c.card_state', [0])
                     ->groupBy('c.card_id')
                     ->orderBy('title', 'RANDOM')
@@ -42,11 +45,11 @@ class QuizModel extends Model
             }else{
                 $query = $builder->select("c.card_id")
                     ->join('eventlog e','c.card_id = e.card_id')
-                    ->where('DATEDIFF(CURDATE(),DATE(c.create_at))>=', $select_old)
+                    ->where($wherec)
                     ->where('c.book_id', $book_id)
                     ->whereIn('c.card_state', [0])
                     ->whereIn('e.choose', ["模糊","忘記"])
-                    ->where('DATEDIFF(CURDATE(),DATE(e.create_at))<=', 30)
+                    ->where($where30)
                     ->groupBy('c.card_id')
                     ->having('c_count>='+$select_wrong)
                     ->orderBy('title', 'RANDOM')
@@ -59,7 +62,7 @@ class QuizModel extends Model
                     ->join('eventlog e','c.card_id = e.card_id')
                     ->where('c.book_id', $book_id)
                     ->whereIn('c.card_state', $state)
-                    ->where('DATEDIFF(CURDATE(),DATE(e.create_at))>=', $select_old)
+                    ->where($wheree)
                     ->groupBy('c.card_id')
                     ->orderBy('title', 'RANDOM')
                     ->limit($select_amount)
@@ -67,11 +70,11 @@ class QuizModel extends Model
             }else{
                 $query = $builder->select("c.card_id")
                     ->join('eventlog e','c.card_id = e.card_id')
-                    ->where('DATEDIFF(CURDATE(),DATE(e.create_at))>=', $select_old)
+                    ->where($wheree)
                     ->where('c.book_id', $book_id)
                     ->whereIn('c.card_state', $state)
                     ->whereIn('e.choose', ["模糊","忘記"])
-                    ->where('DATEDIFF(CURDATE(),DATE(e.create_at))<=', 30)
+                    ->where($where30)
                     ->groupBy('c.card_id')
                     ->having('c_count>='+$select_wrong)
                     ->orderBy('title', 'RANDOM')
