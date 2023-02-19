@@ -23,7 +23,6 @@ class App extends BaseConfig
      * environments.
      */
     public string $baseURL = 'http://localhost/myproject3_ci4';
-    //public string $baseURL = 'http://govoc.jybluega.com/myproject3/';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
