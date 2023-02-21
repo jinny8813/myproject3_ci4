@@ -52,5 +52,44 @@ class Book extends BaseController
         }                
     }
 
+    public function editBook($book_id)
+    {
+        if($this->isLogin()){
+            $bookModel = new BookModel();
+            $data['books'] = $bookModel->where('book_id', $book_id)->findAll(1);
+            return view("pages/editbook",array_merge($this->memberData,$data)); 
+        }else{
+            return view('pages/login');
+        }
+    }
+
+    public function doEditBook()
+    {
+        if($this->isLogin()){
+            $bookModel = new BookModel();
+            $book_id = $this->request->getPost("book_id");
+            $title = $this->request->getPost("title");
+            $description = $this->request->getPost("description");
+            $bookModel->where('book_id', $book_id)->set('book_title', $title)->set('book_description', $description)->update();
+            $arr=['success_messages'=>"發文成功!!將跳轉回所有文章頁面",
+                'status_code'=>200];
+            //echo json_encode($arr);
+            return $this->response->setJSON($arr);
+            // return view('pages/bloghome');
+        }else{
+            return view('pages/login');
+        }
+    }
+
+    public function delete($book_id)
+    {
+        if($this->isLogin()){
+            $bookModel = new BookModel();
+            $bookModel->where('book_id', $book_id)->delete();
+            return redirect()->to(base_url('Book'));
+        }else{
+            return view('pages/login');
+        }
+    }
 }
 
