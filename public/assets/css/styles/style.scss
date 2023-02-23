@@ -3,6 +3,8 @@ $color-light: #f2f0ee;
 $color-link: #d6b005;
 $color-dark-hover: #6a8824;
 $color-link-hover: #a88a02;
+$checked-dot: #6a88247c;
+$checked-border: #6a8824;
 
 .p_mb {
   margin-bottom: 0;
@@ -63,4 +65,18 @@ section {
 .btn:active:hover {
   background-color: $color-link-hover;
   border: none;
+}
+
+.circle {
+  width: 36px;
+  height: 36px;
+  padding: 4px;
+  border-radius: 50%;
+  background: #8f8f8f4f;
+  border: solid transparent;
+}
+
+.checked {
+  background: $checked-dot;
+  border: solid $checked-border;
 }

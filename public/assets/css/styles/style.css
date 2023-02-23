@@ -60,4 +60,18 @@ section .nav-link:hover {
 .btn:active:hover {
   background-color: #a88a02;
   border: none;
+}
+
+.circle {
+  width: 36px;
+  height: 36px;
+  padding: 4px;
+  border-radius: 50%;
+  background: rgba(143, 143, 143, 0.3098039216);
+  border: solid transparent;
+}
+
+.checked {
+  background: rgba(106, 136, 36, 0.4862745098);
+  border: solid #6a8824;
 }/*# sourceMappingURL=style.css.map */

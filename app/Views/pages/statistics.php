@@ -4,7 +4,7 @@
     <div class="container p-5">
       <div class="row justify-content-center">
         <div class="col-12">
-          <h3 class="p-3 m-3 text-center">統計分析</h3>
+          <h3 class="p-3 m-3 text-center">每日統計</h3>
           <hr>
           <form action="">
               <div class="form-group row mb-3 justify-content-center">
@@ -19,11 +19,11 @@
 
           <div class="p-3 border border-secondary rounded row justify-content-center">
             <h5 class="text-center fs-3" id="today"></h5>
+            <hr>
             <p class="p_mb">目標測驗數: 200 個</p>
             <p class="p_mb" id="todayLogs">本日測驗數: 個</p>
             <p class="p_mb" id="todayPercent">達成率: %</p>
-            <hr>
-            <p class="p_mb">今日測驗狀況: </p>
+            <p class="p_mb">本日測驗狀況: </p>
             <div class="col-3">
                 <br>
             </div>
@@ -36,17 +36,13 @@
               <p class="p_mb small text-center"><i class="fa-solid fa-square" style="color: #a99a85;"></i> 模糊</p>
               <p class="p_mb small text-center"><i class="fa-solid fa-square" style="color: #e3ddd1;"></i> 忘記</p>
             </div>
+            <hr>
+            <p class="p_mb">本日新字卡數: 個</p>
+            <p class="p_mb" id="myCards">總字卡數: 個</p>
             <p class="p_mb">當前字卡狀態: </p>
             <div class="col-12">
                 <canvas id="bar-chart"></canvas>
             </div>
-            <hr>
-            <p class="p_mb">本日新字卡: 個</p>
-            <p class="p_mb" id="myCards">總字卡數: 個</p>
-            <p class="p_mb">本日測驗數: 個</p>
-            <p class="p_mb">累積測驗數: 個</p>
-            <p class="p_mb">持續天數: 天</p>
-            <p class="p_mb">累積天數: 天</p>
           </div>
 
         </div>

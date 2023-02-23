@@ -8,6 +8,7 @@ use App\Models\EventlogModel;
 
 class Statistics extends BaseController
 {
+
     public function index()
     {
         if($this->isLogin()){
@@ -89,5 +90,75 @@ class Statistics extends BaseController
             return redirect()->to("User/login");
         }
     }
-    
+
+    public function tracker()
+    {
+        if($this->isLogin()){
+            date_default_timezone_set('Asia/Taipei');
+            $day = date('w');
+            for($i=0;$i<7;$i++){
+                $week[$i]=date('Y-m-d', strtotime('-'.($day-1-$i).' days'));
+            }
+
+            $user_id = $this->memberData['user_id'];
+            $bookModel=new BookModel();
+            $data1 = $bookModel->where('user_id', $user_id)->findAll();
+            $data_book_id=[];
+            foreach($data1 as $i){
+                $data_book_id[] = $i['book_id'];
+            }
+            $cardModel = new CardModel();
+            $data2['my_cards'] = $cardModel->whereIn('book_id', $data_book_id)->findAll();
+            $data_card_id=[];
+            foreach($data2['my_cards'] as $i){
+                $data_card_id[] = $i['card_id'];
+            }
+            $str_card_id=implode( ',', $data_card_id );
+
+            $eventlogModel = new EventlogModel();
+            $data3['weekly_count'] = $eventlogModel->getWeekInfo($str_card_id,$week[0],$week[6]);
+
+            $weekrange['weekrange']=['weekrange'=>$week[0]." ~ ".$week[6]];
+            
+            $tmp=array_merge($weekrange,$data3);
+            return view('pages/tracker',array_merge($this->memberData,$tmp));
+        }else{
+            return redirect()->to("User/login");
+        }  
+    }
+
+    public function changeWeek()
+    {
+        if($this->isLogin()){
+            $first = $this->request->getPost("first");
+            $last = $this->request->getPost("last");
+
+            $user_id = $this->memberData['user_id'];
+            $bookModel=new BookModel();
+            $data1 = $bookModel->where('user_id', $user_id)->findAll();
+            $data_book_id=[];
+            foreach($data1 as $i){
+                $data_book_id[] = $i['book_id'];
+            }
+            $cardModel = new CardModel();
+            $data2['my_cards'] = $cardModel->whereIn('book_id', $data_book_id)->findAll();
+            $data_card_id=[];
+            foreach($data2['my_cards'] as $i){
+                $data_card_id[] = $i['card_id'];
+            }
+            $str_card_id=implode( ',', $data_card_id );
+
+            $eventlogModel = new EventlogModel();
+            $data3['weekly_count'] = $eventlogModel->getWeekInfo($str_card_id,$first,$last);
+            
+            $weekrange['weekrange']=['weekrange'=>$first." ~ ".$last];
+
+            $tmp=array_merge($this->memberData,$data3);
+            $tmp=array_merge($tmp,$weekrange);
+            return $this->response->setJSON($tmp);
+        }else{
+            return redirect()->to("User/login");
+        }  
+    }
+
 }
