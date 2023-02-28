@@ -129,8 +129,8 @@ new Chart(document.getElementById("line-chart"), {
       datasets: [
         {
           label: "本週測驗數",
-          backgroundColor: ["#6a8824"],
-          borderColor: ["#6a8824"],
+          backgroundColor: "#6a8824",
+          borderColor: "#6a8824",
           data: [weekArr[0]['ccount'],
                 weekArr[1]['ccount'],
                 weekArr[2]['ccount'],
@@ -194,8 +194,8 @@ new Chart(document.getElementById("line-chart"), {
       datasets: [
         {
           label: "本週測驗數",
-          backgroundColor: ["#6a8824"],
-          borderColor: ["#6a8824"],
+          backgroundColor: "#6a8824",
+          borderColor: "#6a8824",
           data: [weekArr[0]['ccount'],
                 weekArr[1]['ccount'],
                 weekArr[2]['ccount'],

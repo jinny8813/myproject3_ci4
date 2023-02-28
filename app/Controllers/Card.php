@@ -17,8 +17,11 @@ class Card extends BaseController
     public function singlebook($book_id)
     {
         if($this->isLogin()){
+            date_default_timezone_set('Asia/Taipei');
+            $date = date('Y-m-d H:i:s');
             $cardModel = new CardModel();
-            $data['cards'] = $cardModel->where('book_id', $book_id)->orderBy('card_id', 'DESC')->findAll();
+            $data['newcards'] = $cardModel->where('book_id', $book_id)->whereIn('card_state', [0])->orderBy('card_id', 'DESC')->findAll();
+            $data['cards']=$cardModel->getLCardsInfo($book_id,$date);
             $addbook_id['book_id']=['book_id'=>$book_id];
             $arr=array_merge($this->memberData,$addbook_id);
             return view("pages/singlebook",array_merge($arr,$data)); 

@@ -19,6 +19,24 @@
             <br>
           </div>
 
+          <?php foreach($newcards as $row):?>
+            <div class="card my-3">
+              <div class="row g-0">
+                <div class="col-3 cardBgColor">
+                  <p class="text-center my-3 d-none stateDNone"><?= $row['card_state']?></p>
+                    <h5 class="text-center my-5 cardState" style="color: white;"></h5>
+                </div>
+                <div class="card-body col-9">
+                    <h3 class="card-title"><?= $row['card_title']?></h3>
+                    <p class="card-text d-inline-block">最近30天正確率: - </p>
+                    <div class="card-text d-inline-block float-end">
+                      <a href="<?= base_url('Card/showCard/'.$row['card_id'])?>" class="btn btn-primary"><i class="fa-solid fa-angles-right"></i></a>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <?php endforeach;?>
+
           <?php foreach($cards as $row):?>
             <div class="card my-3">
               <div class="row g-0">
@@ -28,7 +46,7 @@
                 </div>
                 <div class="card-body col-9">
                     <h3 class="card-title"><?= $row['card_title']?></h3>
-                    <p class="card-text d-inline-block"><?= $row['card_content']?></p>
+                    <p class="card-text d-inline-block">最近30天正確率: <?= $row['score']?>%</p>
                     <div class="card-text d-inline-block float-end">
                       <a href="<?= base_url('Card/showCard/'.$row['card_id'])?>" class="btn btn-primary"><i class="fa-solid fa-angles-right"></i></a>
                     </div>
