@@ -63,9 +63,9 @@ section .nav-link:hover {
 }
 
 .circle {
-  width: 36px;
-  height: 36px;
-  padding: 4px;
+  width: 35px;
+  height: 35px;
+  padding: 3px;
   border-radius: 50%;
   background: rgba(143, 143, 143, 0.3098039216);
   border: solid transparent;

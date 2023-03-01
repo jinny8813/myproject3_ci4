@@ -9,7 +9,7 @@
           <form action="">
               <div class="form-group row mb-3 justify-content-center">
                     <div class="col-6">
-                      <input type="week" class="form-control" id="changeweek" name="week">
+                      <input type="date" class="form-control" id="changeweek" name="week">
                     </div>
                     <div class="col-2">
                       <button type="submit" name="submit" id="button" class="btn btn-primary" onclick="changeWeek()"><i class="fa-solid fa-plane"></i></button>
@@ -21,8 +21,8 @@
             <h5 class="text-center fs-3" id="today"></h5>
             <hr>
             <p class="p_mb">本週打卡狀況: </p>
-            <div class="col-12 row justify-content-center">
-                <table class="table table-borderless table-sm">
+
+            <table class="table table-borderless table-sm">
                 <tbody>
                     <tr>
                         <th class="text-center">MON</th>
@@ -43,8 +43,8 @@
                         <th><div class="d-flex justify-content-center"><div class="circle text-center" id="date7">01</div></div></th>
                     </tr>
                 </tbody>
-                </table>
-            </div>
+            </table>
+            
             <hr>
             <p class="p_mb" id="logs">總測驗數:  個</p>
             <p class="p_mb" id="weeklyLogs">本週測驗數:  個</p>
@@ -77,8 +77,11 @@
         let d = (1 + (w - 1) * 7)+2+6;
         return new Date(y, 0, d);
     }
-    let y=changeweek.slice(0,4);
-    let w=changeweek.slice(-2);
+
+    let select= new Date(changeweek);
+    let y =  select.getFullYear();
+    let d =  Math.floor((select - new Date(select.getFullYear(), 0, 1)) / (24 * 60 * 60 * 1000));
+    let w = Math.ceil(( select.getDay() + d) / 7);
 
     let first=getFirst(w,y).toISOString().split('T')[0];
     let last=getLast(w,y).toISOString().split('T')[0];
@@ -95,7 +98,6 @@
     })
     .done(function(e){
         //window.location.reload();
-        console.log(e);
         const rangeArr=e.weekrange;
 document.getElementById('today').innerText = rangeArr['weekrange'];
         const weekArr=e.weekly_count;
@@ -109,7 +111,8 @@ document.getElementById('date7').innerText = weekArr[6]['date_ymd'].slice(-2);
 
 let all=0;
 for(let i=0;i<7;i++){
-    if(weekArr[i]['ccount']>0){
+    document.getElementById("date"+(i+1)).classList.remove('checked');    
+    if(weekArr[i]['ccount']>=200){
         document.getElementById("date"+(i+1)).classList.add('checked');    
     }
     all=all+parseInt(weekArr[i]['ccount']);
@@ -174,7 +177,7 @@ document.getElementById('date7').innerText = weekArr[6]['date_ymd'].slice(-2);
 
 let all=0;
 for(let i=0;i<7;i++){
-    if(weekArr[i]['ccount']>0){
+    if(weekArr[i]['ccount']>=200){
         document.getElementById("date"+(i+1)).classList.add('checked');    
     }
     all=all+parseInt(weekArr[i]['ccount']);
