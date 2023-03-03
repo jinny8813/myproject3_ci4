@@ -11,9 +11,9 @@
             <div class="card my-3">
                 <div class="card-body py-5 my-5">
                     <h5 class="card-title text-center fs-1" id="frountTitle"></h5>
-                    <p class="text-center p_mb" id="partOfSpeech"></p>
-                    <p class="text-center p_mb" id="pronunciation"></p>
-                    <h5 class="text-center fs-1 d-none"  id="backContent"></h5>
+                    <p class="text-center p_mb small" id="partOfSpeech"></p>
+                    <p class="text-center p_mb small" id="pronunciation"></p>
+                    <h5 class="card-title text-center fs-1 d-none"  id="backContent"></h5>
                     <p class="text-center p_mb d-none small" id="e_sentence"></p>
                     <p class="text-center p_mb d-none small" id="c_sentence"></p>
                 </div>

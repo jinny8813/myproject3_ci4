@@ -10,6 +10,7 @@ class QuizModel extends Model
     protected $allowedFields = ['quiz_id','user_id','select_book','select_old','select_wrong','select_state','select_amount','add_random','quiz_list','create_at'];
 
     public function getNewQuiz($date,$book_id,$select_old,$select_wrong,$select_state,$select_amount){
+        $wherebook="c.book_id IN ({$book_id})";
         switch ($select_state){
             case "差":
                 $state=[1,2];
@@ -26,6 +27,9 @@ class QuizModel extends Model
             case "佳":
                 $state=[9,10];
                 break;
+            case "已測驗":
+                $state=[1,2,3,4,5,6,7,8,9,10];
+                break;
         }
         $wherec="DATEDIFF('{$date}',c.create_at)>={$select_old}";
         $wheree="DATEDIFF('{$date}',e.create_at)>={$select_old}";
@@ -35,7 +39,7 @@ class QuizModel extends Model
         if($select_state=="未測驗"){
             if($select_wrong==0){
                 $query = $builder->select("c.card_id")
-                    ->where('c.book_id', $book_id)
+                    ->where($wherebook)
                     ->where($wherec)
                     ->whereIn('c.card_state', [0])
                     ->groupBy('c.card_id')
@@ -46,7 +50,7 @@ class QuizModel extends Model
                 $query = $builder->select("c.card_id")
                     ->join('eventlog e','c.card_id = e.card_id')
                     ->where($wherec)
-                    ->where('c.book_id', $book_id)
+                    ->where($wherebook)
                     ->whereIn('c.card_state', [0])
                     ->whereIn('e.choose', ["模糊","忘記"])
                     ->where($where30)
@@ -60,7 +64,7 @@ class QuizModel extends Model
             if($select_wrong==0){
                 $query = $builder->select("c.card_id")
                     ->join('eventlog e','c.card_id = e.card_id')
-                    ->where('c.book_id', $book_id)
+                    ->where($wherebook)
                     ->whereIn('c.card_state', $state)
                     ->where($wheree)
                     ->groupBy('c.card_id')
@@ -71,7 +75,7 @@ class QuizModel extends Model
                 $query = $builder->select("c.card_id")
                     ->join('eventlog e','c.card_id = e.card_id')
                     ->where($wheree)
-                    ->where('c.book_id', $book_id)
+                    ->where($wherebook)
                     ->whereIn('c.card_state', $state)
                     ->whereIn('e.choose', ["模糊","忘記"])
                     ->where($where30)

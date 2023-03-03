@@ -11,10 +11,25 @@
                         <label for="select_book">選擇書本:</label>
                     </div>
                     <div class="col-8">
-                        <select name="select_book"id="select_book" class="form-select">
                             <?php foreach($books as $row):?>
-                                <option value="<?= $row['book_id']?>"><?= $row['book_title']?></option>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="book_group" value="<?= $row['book_id']?>" required><?= $row['book_title']?></div>
                             <?php endforeach;?>
+                            <span id="bookError" class="text-danger d-none" >請選擇至少一個書本</span>
+                    </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <div class="col-4">
+                        <label for="select_state">字卡狀態:</label>
+                    </div>
+                    <div class="col-8">
+                        <select name="select_state"id="select_state" class="form-select">
+                            <option value="未測驗">未測驗</option>
+                            <option value="已測驗">已測驗</option>
+                            <option value="差">差</option>
+                            <option value="弱">弱</option>
+                            <option value="中">中</option>
+                            <option value="可">可</option>
+                            <option value="佳">佳</option>
                         </select>
                     </div>
                 </div>
@@ -48,22 +63,6 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group row mb-3">
-                    <div class="col-4">
-                        <label for="select_state">字卡狀態:</label>
-                    </div>
-                    <div class="col-8">
-                        <select name="select_state"id="select_state" class="form-select">
-                            <option value="未測驗">未測驗</option>
-                            <option value="差">差</option>
-                            <option value="弱">弱</option>
-                            <option value="中">中</option>
-                            <option value="可">可</option>
-                            <option value="佳">佳</option>
-                        </select>
-                    </div>
-                </div>
-                <br>
                 <div class="form-group row mb-3">
                     <div class="col-4">
                         <label for="select_amount">測驗數量:</label>
@@ -102,18 +101,27 @@
     function doCreateQuiz(){
     event.preventDefault();
 
-    let select_book = document.getElementById("select_book").value;
+    let select_book = new Array();
+    $.each($("input[name='book_group']:checked"), function() {
+        select_book.push(parseInt($(this).val()));
+    });
+    if(select_book.length==0){
+        document.getElementById('bookError').classList.remove('d-none');
+    }else{
+        document.getElementById('bookError').classList.add('d-none');
+    }
     let select_old = document.getElementById("select_old").value;
     let select_wrong = document.getElementById("select_wrong").value;
     let select_state = document.getElementById("select_state").value;
     let select_amount = document.getElementById("select_amount").value;
 
+    console.log(select_book);
     $.ajax({
         url: "<?= base_url("Quiz/doCreateQuiz")?>",
         type: 'POST',
         dataType: 'json',
         data: {
-            select_book:select_book,
+            select_book:select_book.toString(),
             select_old:select_old,
             select_wrong:select_wrong,
             select_state:select_state,
