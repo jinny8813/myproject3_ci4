@@ -91,14 +91,19 @@ class Quiz extends BaseController
         if($this->isLogin()){
             date_default_timezone_set('Asia/Taipei');
             $date = date('Y-m-d H:i:s');
-            $quiz_id = $this->request->getPost("quiz_id");
+            $quizModel = new QuizModel();
+            $quizData = $quizModel->orderBy('create_at', 'DESC')->findAll(1);
+            $quizArr=explode("_", $quizData[0]['quiz_list']);
+            $cardModel = new CardModel();
+            $data = $cardModel->whereIn('card_id',$quizArr)->orderBy('title', 'RANDOM')->findAll();
+            // $quiz_id = $this->request->getPost("quiz_id");
             $selections = $this->request->getPost("selections");
-            $bigArr = $this->request->getPost("bigArr");
+            // $bigArr = $this->request->getPost("bigArr");
             $eventlogModel = new EventlogModel();
             for($i=0;$i<count($selections);$i++){
                 $values = [
-                    'quiz_id'=>$quiz_id,
-                    'card_id'=>$bigArr[$i]['card_id'],
+                    'quiz_id'=>$quizData[0]['quiz_id'],
+                    'card_id'=>$data[$i]['card_id'],
                     'choose'=>$selections[$i],
                     'create_at'=>$date,
                 ];
@@ -106,7 +111,7 @@ class Quiz extends BaseController
             }
             for($i=0;$i<count($selections);$i++){
                 $cardModel = new CardModel();
-                $state = $cardModel->where('card_id', $bigArr[$i]['card_id'])->findAll();
+                $state = $cardModel->where('card_id', $data[$i]['card_id'])->findAll();
                 $update_state=-1;
                 if($state[0]['card_state']==0){
                     $update_state=5;
