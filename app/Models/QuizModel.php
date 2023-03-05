@@ -32,8 +32,8 @@ class QuizModel extends Model
                 break;
         }
         $wherec="DATEDIFF('{$date}',c.create_at)>={$select_old}";
-        $wheree="DATEDIFF('{$date}',e.create_at)>={$select_old}";
-        $where30="DATEDIFF('{$date}',e.create_at)<=30";
+        $wheree="DATEDIFF('{$date}',e.maxdate)>={$select_old}";
+        $where30="DATEDIFF('{$date}',e.maxdate)<=30";
         $db = \Config\Database::connect();
         $builder = $db->table('cards c');
         if($select_state=="未測驗"){
@@ -48,7 +48,9 @@ class QuizModel extends Model
                     ->get()->getResult();
             }else{
                 $query = $builder->select("c.card_id")
-                    ->join('eventlog e','c.card_id = e.card_id')
+                    ->join('(select card_id, max(create_at) as maxdate
+                            from eventlog
+                            group by card_id) e','c.card_id = e.card_id')
                     ->where($wherec)
                     ->where($wherebook)
                     ->whereIn('c.card_state', [0])
@@ -63,7 +65,9 @@ class QuizModel extends Model
         }else{
             if($select_wrong==0){
                 $query = $builder->select("c.card_id")
-                    ->join('eventlog e','c.card_id = e.card_id')
+                    ->join('(select card_id, max(create_at) as maxdate
+                                from eventlog
+                                group by card_id) e','c.card_id = e.card_id')
                     ->where($wherebook)
                     ->whereIn('c.card_state', $state)
                     ->where($wheree)
@@ -73,7 +77,9 @@ class QuizModel extends Model
                     ->get()->getResult();
             }else{
                 $query = $builder->select("c.card_id")
-                    ->join('eventlog e','c.card_id = e.card_id')
+                    ->join('(select card_id, max(create_at) as maxdate
+                            from eventlog
+                            group by card_id) e','c.card_id = e.card_id')
                     ->where($wheree)
                     ->where($wherebook)
                     ->whereIn('c.card_state', $state)
